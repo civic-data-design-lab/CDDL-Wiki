@@ -1,0 +1,704 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Choose the right database for your app</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="cd4c4e78-2749-4009-b559-2052bb788d6f" class="page sans"><header><h1 class="page-title"><a href="https://devcenter.heroku.com/articles/heroku-postgres-plans">Choose the right database for your app</a></h1></header><div class="page-body"><p id="4f494a28-802e-4964-a957-eb433322eba4" class="">
+</p><h1 id="4867e16d-7bee-4318-bdd7-dab709496cdc" class="">Options</h1><ul id="8739e5bb-9000-4c07-afea-ff4ea445df96" class="bulleted-list"><li style="list-style-type:disc"><strong>Heroku Postgres</strong></li></ul><ul id="2484e185-37f3-4975-a59c-58fb89e3ac17" class="bulleted-list"><li style="list-style-type:disc"><strong>MongoDB</strong></li></ul><p id="bb570856-fc13-4f97-a001-e639a1742ef6" class="">
+</p><h1 id="aa5cb793-38c1-4a18-aafa-88f7897c2f28" class="">Data Structure</h1><p id="517caf49-a4dd-479c-a9cf-9e9f080f3be2" class="">
+</p><figure id="2ceb8fa8-d930-458e-b12d-d8124c4b8d46" class="image"><a href="Choose%20the%20right%20database%20for%20your%20app%20cd4c4e7827494009b5592052bb788d6f/Screen_Shot_2022-03-31_at_9.24.15_AM.png"><img style="width:1418px" src="Choose%20the%20right%20database%20for%20your%20app%20cd4c4e7827494009b5592052bb788d6f/Screen_Shot_2022-03-31_at_9.24.15_AM.png"/></a></figure><p id="2699029d-13b3-456a-b09d-2567318ebea4" class="">
+</p><h1 id="9e88175a-5d63-4976-b586-2e32c590b751" class=""><strong>MongoDB</strong></h1><p id="a64a22e5-ae53-4d57-a061-2cfe6fb37370" class=""><a href="https://www.mongodb.com">MongoDB</a> stores data in JSON-like documents that can vary in structure, offering a dynamic, flexible schema. MongoDB was also designed for high availability and scalability, with built-in replication and auto-sharding.</p><p id="711f33c1-85d6-4db5-844d-c7b59e87a839" class="">See <a href="https://www.mongodb.com/basics/get-started">Getting Started</a> page to set up a MongoDB database.</p><h1 id="31b7033c-652d-45ac-91dd-eaddaa03fc14" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#understanding-heroku-postgres-plans"><strong>Understanding Heroku Postgres Plans</strong></a></h1><p id="d57306e1-1b1f-44d8-835c-bba90cf4aca2" class="">Heroku Postgres offers a variety of plans, spread across different tiers of service: hobby, standard, premium, and enterprise. For more information on what each plan provides, see <a href="https://devcenter.heroku.com/articles/heroku-postgres-plans">Choosing the Right Heroku Postgres Plan</a>.</p><h1 id="81fb4ffc-150c-4313-957e-a05051c94e6d" class="">Heroku Postgres</h1><p id="c94ec0a7-dedc-4b3b-b371-2bdf30d665fa" class=""><a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a> is a managed SQL database service provided directly by Heroku. You can access a Heroku Postgres database from any language with a PostgreSQL driver, including all languages <a href="https://www.heroku.com/languages">officially supported by Heroku</a>.</p><figure id="228da5e7-3fc6-426d-b6c9-489984b91d98" class="image"><a href="https://devcenter3.assets.heroku.com/article-images/1478195488-Screen-Shot-2016-11-03-at-10.50.32-AM.png"><img src="https://devcenter3.assets.heroku.com/article-images/1478195488-Screen-Shot-2016-11-03-at-10.50.32-AM.png"/></a></figure><p id="b5c60c98-c432-406a-b454-b11979cd5f1e" class="">In addition to a variety of management commands available via the Heroku CLI, Heroku Postgres provides a <a href="https://data.heroku.com/">web dashboard</a>, the ability to <a href="https://devcenter.heroku.com/articles/dataclips">share queries with dataclips</a>, and several other helpful features.</p><h1 id="7e4065cc-b36c-414f-a721-d8d74be561ca" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres"><strong>Provisioning Heroku Postgres</strong></a></h1><p id="a7c9f0bb-d3fd-4265-9878-7a689de9bad2" class="">Before you provision Heroku Postgres, confirm that it isn’t <em>already</em> provisioned for your app. Heroku automatically provisions Postgres for apps that include certain libraries, such as the <code>pg</code>Ruby gem.</p><p id="ad403c91-7018-448f-b6dc-07b025d14a0e" class="">Use the <code>heroku addons</code> command to determine whether your app already has Heroku Postgres provisioned:</p><pre id="a6dd0b45-66d9-4e03-ba41-ece657e17862" class="code code-wrap"><code>$ heroku addons
+Add-on                                                      Plan       Price  State
+──────────────────────────────────────────────────────────  ─────────  ─────  ───────
+heroku-postgresql (postgresql-concave-52656)                hobby-dev  free   created
+</code></pre><p id="5e6cd334-0262-416a-a0dc-ced1b0201fb7" class="">If <code>heroku-postgresql</code> doesn’t appear in your app’s list of add-ons, you can provision it with the following CLI command:</p><pre id="130cfb29-7d61-4696-8dab-1d39cdb4a141" class="code code-wrap"><code>$ heroku addons:create heroku-postgresql:&lt;PLAN_NAME&gt;
+</code></pre><p id="1b3d2782-c130-49ae-b4fb-e14d331507f7" class="">For example, to provision a <a href="https://devcenter.heroku.com/articles/heroku-postgres-plans#hobby-tier">hobby-dev</a> plan database:</p><pre id="b1e94df6-490c-4e15-836c-890582d9d27c" class="code code-wrap"><code>$ heroku addons:create heroku-postgresql:hobby-dev
+Creating heroku-postgresql:hobby-dev on ⬢ sushi... free
+Database has been created and is available
+ ! This database is empty. If upgrading, you can transfer
+ ! data from another database with pg:copy
+Created postgresql-concave-52656 as DATABASE_URL
+</code></pre><p id="5169d175-0261-44dd-9820-2ecbfe5e237a" class="">You can specify the version of Postgres you want to provision by including the  <code>--version</code> flag in your provisioning command:</p><pre id="e8efdc4c-65fe-4e84-9cf0-7b2c48fa0608" class="code code-wrap"><code>$ heroku addons:create heroku-postgresql:&lt;PLAN_NAME&gt; --version=12
+</code></pre><p id="89740bee-2962-45e1-bff0-d00773a2161c" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#version-support">Learn more about PostgreSQL version support.</a></p><p id="dc5f7004-3f35-482a-8490-2034dd0f99fe" class="">Depending on the plan you choose, your database can take up to 5 minutes to become available. You can track its status with the <code>heroku pg:wait</code> command, which blocks until your database is ready to use.</p><p id="250f7697-ed0a-4a99-9df4-25ea5ca7f183" class="">As part of the provisioning process, a <code>DATABASE_URL</code> config var is added to your app’s configuration. <code>DATABASE_URL</code> contains the URL your app uses to access the database. If your app already has a Heroku Postgres database and you’ve provisioned <em>another</em> one, this config var’s name instead has the format <code>HEROKU_POSTGRESQL_&lt;COLOR&gt;_URL</code> (for example, <code>HEROKU_POSTGRESQL_YELLOW_URL</code>).</p><p id="2ea98f17-1444-4592-8a58-2c48a3bfc01e" class="">You can confirm the names and values of your app’s config vars with the <code>heroku config</code>command.</p><p id="36cc09fb-6f67-416c-9cec-ae1d04ac8894" class="">The value of your app’s <code>DATABASE_URL</code> config var can change at any time. Do not rely on this value either inside or outside your Heroku app.</p><p id="fd11f956-5145-48ef-9766-dfda191abe3c" class="">At this point, an empty PostgreSQL database is provisioned. To populate it with data from an existing data source, see the <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export#import">import instructions</a> or follow the language-specific instructions in this article to connect from your application.</p><h1 id="2316a559-ecf6-47b7-bb32-40e8231e8413" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#local-setup"><strong>Local Setup</strong></a></h1><ul id="1c9eb6ed-dc4e-4223-bc64-f78bb29c5b1b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac">Mac setup</a></li></ul><ul id="f314733a-34d4-401d-806c-67cffc5f028d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-windows">Windows setup</a></li></ul><ul id="17f6cd5b-a1a8-4e8d-8d0d-9c5ae90826e5" class="bulleted-list"><li style="list-style-type:disc"><a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-linux">Linux setup</a></li></ul><p id="10b2c365-7ee1-48ea-bea4-8c45c946facc" class="">Heroku recommends running Postgres locally <a href="http://www.12factor.net/dev-prod-parity">to ensure parity between environments</a>. There are several pre-packaged installers for installing PostgreSQL in your local environment.</p><p id="456da978-5140-4e4f-96bb-fe8e6f1be79e" class="">After Postgres is installed and you can connect, you must export the DATABASE_URL environment variable for your app to connect to it when running locally:</p><pre id="ec1d352a-1fe3-49ff-8759-ba26d67fe18e" class="code code-wrap"><code>-- for Mac and Linux
+$ export DATABASE_URL=postgres://$(whoami)
+-- for Windows
+$ set DATABASE_URL=postgres://$(whoami)
+</code></pre><p id="edf112e0-d2f5-49c4-a14b-07b93d20039a" class="">Postgres will connect to the local database matching your user account name (which is set up as part of installation).</p><h3 id="a7753b6c-44dc-49f5-8963-e82ad5921fde" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac">Set up Postgres on Mac</a></h3><p id="d37b2e7e-7393-4f03-8f4c-bec04b77d5bb" class="">Postgres.app requires Mac OS 10.7 or above.</p><ol type="1" id="9d5e6dec-ca2f-44a7-96c9-3f36ccb80cb8" class="numbered-list" start="1"><li>Install <a href="http://postgresapp.com/">Postgres.app</a> and follow setup instructions.</li></ol><ol type="1" id="bc7f0aba-2f99-44d7-a6c5-c18544705319" class="numbered-list" start="2"><li>Install the <a href="http://postgresapp.com/documentation/cli-tools.html">postgres CLI tools</a>.</li></ol><ol type="1" id="2618c6f0-49cc-461c-96c4-dd41871db3ac" class="numbered-list" start="3"><li>Open up a new terminal window to ensure your changes have been saved.</li></ol><ol type="1" id="0734f63d-b9df-4186-8b39-e15a377bdead" class="numbered-list" start="4"><li>Verify that it worked correctly. The OS X version of <code>psql</code> must point to the path containing the <code>Postgres.app</code> directory.</li></ol><p id="73cfe52e-a17e-4f3b-8698-fcdba1ec375a" class="">If you’re using version 10, the output will look similar to:</p><pre id="827e0acb-13d4-412b-917c-db6f634f113e" class="code code-wrap"><code>$ which psql
+/Applications/Postgres.app/Contents/Versions/latest/bin/psql
+</code></pre><p id="fdcefd00-0bc7-4ed0-990f-74589bbc9cdd" class="">This command should work correctly:</p><pre id="42b58d0d-7a82-4f30-b283-5e85782c2098" class="code code-wrap"><code>$ createdb
+$  psql -h localhost
+psql (10.14)
+Type &quot;help&quot; for help.
+=# \q
+</code></pre><p id="972cb259-22de-4778-9717-2fca677e6abc" class="">Also verify that the app is set to <em>automatically</em> start at login.</p><p id="539c2c81-ed3d-458c-b1d8-eb314dacef9d" class="">PostgreSQL ships with several useful binaries including <code>pg_dump</code> and <code>pg_restore</code>. To make these available in every terminal session, add the <code>/bin</code> directory that ships with Postgres.app to your PATH (preferably in <code>.profile</code>, <code>.bashrc</code>, <code>.zshrc</code>, or similar):</p><pre id="0886fd83-a834-4ab3-97c9-2af17b60aeff" class="code code-wrap"><code>PATH=&quot;/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH&quot;
+</code></pre><h3 id="2ce49069-f843-4ab8-98b3-78ce97cdd915" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-windows">Set up Postgres on Windows</a></h3><p id="2356ef28-1613-4d37-8a5c-999269d9a6ec" class="">Install Postgres on Windows by using the <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">Windows installer</a>.</p><p id="0deaa36e-2d9a-4b18-82e5-9332b44e6289" class="">Remember to update your PATH environment variable to add the <code>bin</code> directory of your Postgres installation. The directory is similar to: <code>C:\Program Files\PostgreSQL\&lt;VERSION&gt;\bin</code>. Commands like <code>heroku pg:psql</code> depend on the PATH and do not work if the PATH is incorrect.</p><h3 id="e579a499-fd11-46a4-84bd-426dfc97bfac" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-linux">Set up Postgres on Linux</a></h3><p id="326d02f0-47b3-46ed-ae83-46419b3f840b" class="">Install Postgres via your package manager. The actual package manager command you use depends on your distribution. The following works on Ubuntu, Debian, and other Debian-derived distributions:</p><pre id="addd7913-9d7e-48b3-a0f6-a7643dd1b820" class="code code-wrap"><code>$ sudo apt-get install postgresql
+</code></pre><p id="2c7da249-9a7b-4539-8a30-fe16258c237d" class="">If you don’t have a package manager on your distribution or the Postgres package isn’t available, install Postgres on Linux using one of the <a href="http://www.enterprisedb.com/products-services-training/pgdownload">Generic installers</a>.</p><p id="9fa939ea-7258-4d96-b88a-b0ac6f87ac2f" class="">The <code>psql</code> client is typically installed in <code>/usr/bin</code>:</p><pre id="57ffbbee-584e-4115-aefe-283fb689e408" class="code code-wrap"><code>$ which psql
+/usr/bin/psql
+</code></pre><p id="1560e89e-b4eb-4010-9650-020c0213690a" class="">The following command should work correctly:</p><pre id="f745047b-8c3a-4b61-8509-f36f99ded55a" class="code code-wrap"><code>$ psql
+psql (9.3.5)
+Type &quot;help&quot; for help.
+maciek# \q
+</code></pre><h1 id="5302e236-9699-4d5a-bc92-907e3f3532fa" class=""><a href="https://devcenter.heroku.com/articles/heroku-postgresql#designating-a-primary-database"><strong>Designating a Primary Database</strong></a></h1><p id="cc6f834f-906c-4274-b6bd-b8ea5115676e" class="">The <code>DATABASE_URL</code> config var designates the URL of an app’s primary Heroku Postgres database. For apps with a single database, its URL is automatically assigned to this config var.</p><p id="d3995f3e-489d-4b60-b07f-8e93c54d3e61" class="">For apps with multiple Postgres databases, set the primary database with <a href="https://devcenter.heroku.com/articles/heroku-cli-commands#heroku-pg-promote-database"><code>heroku pg:promote</code></a>. Common use cases include <a href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">leader/follower high-availability setups</a> or as part of the <a href="https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases#upgrading-with-pg-copy">database upgrade process</a>.</p></div></article></body></html>

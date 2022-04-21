@@ -1,0 +1,713 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Deploy using Heroku CLI or Github</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="78c5fbb6-9f81-4af6-9ae3-3e7c56b402cf" class="page sans"><header><h1 class="page-title">Deploy using <a href="https://devcenter.heroku.com/articles/getting-started-with-python">Heroku CLI</a> or Github</h1></header><div class="page-body"><p id="d7b621db-30e5-446b-b8d1-0f6442da320e" class="">
+</p><p id="adea115d-d4b1-4455-a67a-44dce88fe46a" class=""><a href="https://devcenter.heroku.com/articles/git">https://devcenter.heroku.com/articles/git</a></p><h1 id="852288fd-ef3b-4b49-99b9-c275218a705c" class=""><a href="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli"><strong>Prerequisites: Install Git and the Heroku CLI</strong></a></h1><p id="fff06abf-4615-4fae-bc73-1a2d206cd5fb" class="">You must have Git and the Heroku CLI installed to deploy with Git.</p><ul id="255777fa-e57f-4b3b-86db-7fe449c69d1a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git installation instructions</a></li></ul><ul id="e5fc8555-60b5-4db5-b8df-5184cebd74bf" class="bulleted-list"><li style="list-style-type:disc"><a href="https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli">Heroku CLI installation instructions</a></li></ul><p id="c33ab053-aaee-49bd-ae1a-c646e6245e5c" class="">Before you can deploy your app to Heroku, initialize a local Git repository and commit your application code to it.</p><p id="82dfe45d-4603-4a9e-9d3d-eb5c14d7e93b" class="">The following example demonstrates initializing a Git repository for an app that lives in the <code>example-app</code> directory:</p><pre id="516180d7-e24a-4ed6-8728-3eec337d6315" class="code code-wrap"><code>$ cd example-app
+$ git init
+Initialized empty Git repository in .git/
+$ git add .
+$ git commit -m &quot;My first commit&quot;
+Created initial commit 5df2d09: My first commit
+ 44 files changed, 8393 insertions(+), 0 deletions(-)
+ create mode 100644 README
+ create mode 100644 Procfile
+ create mode 100644 app/controllers/source_file
+...
+</code></pre><p id="0bd3cfdd-0fb6-4f44-9ef5-28dd12bf9002" class="">Initialize the Git repository in your app’s root directory. If your app is in a subdirectory of your repository, it doesn’t run when pushed to Heroku.</p><p id="21085bc6-70e2-4556-9662-888923cb9a21" class="">You’re now tracking your app’s code in a local Git repository. It doesn’t yet exist on any remote servers.</p><h1 id="be49d147-40e7-4f54-88f3-385f7134eefa" class=""><a href="https://devcenter.heroku.com/articles/git#create-a-heroku-remote"><strong>Create a Heroku Remote</strong></a></h1><p id="3a2bf8b4-d7a1-484f-bc6c-42aebd9bcefc" class="">Git <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">remotes</a> are versions of your repository that live on other servers. You deploy your app by pushing its code to a special Heroku-hosted remote that’s associated with your app.</p><p id="23dba626-765c-4c3c-948e-80e9db793235" class="">Heroku Git is a convenience for deployment and not intended to be a stable git repository. Use <a href="http://github.com/"><strong>GitHub</strong></a> (recommended), <a href="https://about.gitlab.com/"><strong>GitLab</strong></a>, <a href="https://bitbucket.org/"><strong>BitBucket</strong></a>, or another version control system to track your codebase.</p><h3 id="3fd8b922-2a4f-43f9-86d8-359c32b743ce" class=""><a href="https://devcenter.heroku.com/articles/git#for-a-new-app">For a New App</a></h3><p id="b6a02721-6f3b-4df3-add9-6e12711a2da4" class="">The <code>heroku create</code> CLI command creates a new empty application on Heroku, along with an associated empty Git repository. If you run this command from your app’s root directory, the empty Heroku Git repository is automatically set as a remote for your local repository.</p><pre id="3130f75a-be1e-4f39-bc4b-4a880f679d9a" class="code code-wrap"><code>$ heroku create -a example-app
+Creating app... done, ⬢ example-app
+https://thawing-inlet-61413.herokuapp.com/ | https://git.heroku.com/example-app.git
+</code></pre><p id="85a5ee1a-1248-4941-a1dd-2db0f66fe0e2" class="">You can use the <code>git remote</code> command to confirm that a remote named <code>heroku</code> has been set for your app:</p><pre id="4403a72d-2d89-4461-a969-6f7318b2d8c1" class="code code-wrap"><code>$ git remote -v
+heroku  https://git.heroku.com/example-app.git (fetch)
+heroku  https://git.heroku.com/example-app.git (push)
+</code></pre><h3 id="d0480b97-aac4-4044-9791-9fe8d25c1ad3" class=""><a href="https://devcenter.heroku.com/articles/git#rename-a-remote">Rename a Remote</a></h3><p id="a6653f32-6f30-42f9-8a70-971c9657418b" class="">By default, the Heroku CLI names all of the Heroku remotes it creates for your app <code>heroku</code>. You can rename your remotes with the <code>git remote rename</code> command. For example, rename <code>heroku</code>to <code>heroku-staging</code>:</p><pre id="5c456fce-c0f8-4605-bbff-1d22ce0db136" class="code code-wrap"><code>$ git remote rename heroku heroku-staging
+</code></pre><p id="1566f469-d2ef-4c39-be3f-8bab2856e645" class="">Renaming your Heroku remote can be handy if you have multiple Heroku apps that use the same codebase. In this case, each Heroku app has its own remote in your local repository.</p><p id="fd419613-8af1-4d90-9e3e-6ecb258e3631" class="">The Dev Center documentation assumes your app has a single Heroku remote that is named <code>heroku</code>.</p><h1 id="a3a141d9-63f4-4e02-84c4-6518041336bc" class=""><a href="https://devcenter.heroku.com/articles/git#deploy-your-code"><strong>Deploy Your Code</strong></a></h1><p id="3cbe4cba-c4f1-49bd-b506-7caa706a59cc" class="">To deploy your app to Heroku, use the <code>git push</code> command to push the code from your local repository’s <a href="https://devcenter.heroku.com/articles/git-branches">main branch</a> to your <code>heroku</code> remote. For example:</p><pre id="e14e0e34-98a8-47c9-b3ee-3f5f8921b482" class="code code-wrap"><code>$ git push heroku main
+Initializing repository, done.
+updating &#x27;refs/heads/main&#x27;
+...
+</code></pre><p id="4463e0d9-0a46-470d-990b-6014766f10e0" class="">Use this same command whenever you want to deploy the latest committed version of your code to Heroku.</p><p id="1285f438-57f6-4264-a389-a94e236a5304" class="">Heroku only deploys code that you push to the <a href="https://devcenter.heroku.com/articles/git-branches">master or main</a> branches of the remote. Pushing code to another branch of the <code>heroku</code> remote has no effect.</p><h3 id="3b0e7b46-90f6-4bde-8f25-13562d0ebcf5" class=""><a href="https://devcenter.heroku.com/articles/git#deploy-from-a-branch-besides-main">Deploy From a Branch Besides main</a></h3><p id="6f7b9ab7-f32a-460d-b1e8-6fb350956412" class="">To deploy code to Heroku from a non-<code>main</code> branch of your local repository (for example, <code>testbranch</code>), use the following syntax push it to the remote’s <code>main</code> branch:</p><pre id="c2b4b1a9-7377-4d8f-aa09-c4471c62188b" class="code code-wrap"><code>$ git push heroku testbranch:main
+</code></pre><p id="0b747af7-4e4c-48df-9b42-602c25b6191a" class="">This method supports applications that rely on Git submodules, in addition to many other <a href="https://devcenter.heroku.com/articles/git-submodules"><strong>dependency resolution strategies</strong></a>.</p><p id="c28d2f2d-e163-45fd-805c-0d5a7065f983" class="">Heroku doesn’t support <a href="https://git-lfs.github.com/"><strong>git lfs</strong></a>. Using this method can cause pushes to fail.</p><h1 id="a0fc1ff0-a77b-41b4-a4e7-bab7bb120362" class=""><a href="https://devcenter.heroku.com/articles/git#multiple-remotes-and-environments"><strong>Multiple Remotes and Environments</strong></a></h1><p id="2f2013a3-8057-417d-92cb-a6de048ac9b5" class="">You can use the same techniques used to deploy to production can be used to deploy a development branch of your application to a staging application on Heroku. See <a href="https://devcenter.heroku.com/articles/multiple-environments">Managing Multiple Environments for an App</a> for more info.</p><h1 id="b51d7e6d-5cf3-4031-a907-991efd2ed841" class=""><a href="https://devcenter.heroku.com/articles/git#detach-from-the-build-process"><strong>Detach From the Build Process</strong></a></h1><p id="84f5597f-a782-4f44-8794-0d0a2f67d125" class="">After you initiate a Heroku deploy with <code>git push</code>, you can detach from the resulting build process by pressing Ctrl + C. Detaching doesn’t cancel the build or the deploy. The build continues in the background and creates a new <a href="https://devcenter.heroku.com/articles/releases">release</a> as soon as it completes.</p><h1 id="151e13ca-3c35-4e2b-8f85-7770472cbaee" class=""><a href="https://devcenter.heroku.com/articles/git#behavior-of-simultaneous-deploys"><strong>Behavior of Simultaneous Deploys</strong></a></h1><p id="95cebb3a-fe61-4349-b601-eb4dd97dbe24" class="">It’s possible to initiate a deploy before a <em>previous</em> deploy of the same app completes. For example, two collaborators on an app push different commits to the <code>heroku</code> remote at roughly the same time.</p><p id="9568074c-c19c-4bb8-bd6e-f3bf48e71c84" class="">If this situation occurs, the different versions of your app deploy to Heroku in the order in which their respective builds complete. This order can differ from the order in which the pushes occurred.</p><p id="86954ed3-b52b-4be7-a720-71bdabd2ecd3" class="">For example, consider two builds, A and B. If Build B starts <em>after</em> Build A but finishes <em>before</em> it, Heroku deploys Build B <em>first</em>. Then, when Build A eventually completes, Heroku deploys it, replacing Build B.</p><h1 id="6ea9d54a-6841-4a76-af0e-98c4fa5069bc" class=""><a href="https://devcenter.heroku.com/articles/git#http-git-authentication"><strong>HTTP Git Authentication</strong></a></h1><p id="464b83fa-f7c3-451a-a7bd-267e4080759a" class="">By default, Heroku uses HTTP as its Git transport. The Heroku CLI automatically places credentials in the <code>.netrc</code> file on <code>heroku login</code>. The Git client uses cURL when interacting with HTTP remotes, and cURL uses the credentials from the <code>.netrc</code> file. See the <a href="https://devcenter.heroku.com/articles/authentication"><strong>CLI authentication article</strong></a> for details.</p><p id="8c844eeb-23e0-48c5-ab46-9f0f636f57a9" class="">You can’t authenticate with the Heroku HTTP Git endpoint using your Heroku username (email) and password. The Heroku HTTP Git endpoint only accepts API-key based <a href="http://en.wikipedia.org/wiki/Basic_access_authentication"><strong>HTTP Basic</strong></a>authentication. Use an API key as described in this section.</p><p id="db91f80c-ade6-4784-85f9-de4ad56734e4" class="">If you authenticate to the Git service with incorrect credentials, you get this error:</p><pre id="9b22a895-93a9-49eb-bb4f-aa58288f7d86" class="code code-wrap"><code>remote: ! WARNING:
+remote: ! Do not authenticate with username and password using git.
+remote: ! Run `heroku login` to update your credentials, then retry the git command.
+remote: ! See documentation for details: https://devcenter.heroku.com/articles/git#http-git-authentication
+</code></pre><p id="d96a1f38-3e5d-4cce-9e57-f7de8209158a" class="">If you’re using other Git clients, such as EGit or Tower, configure them to use an empty string for username and your account API key for password. The API key is <a href="https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token">available in the CLI</a> and in the <a href="https://dashboard.heroku.com/account">dashboard</a>.</p><h1 id="177b68b0-ddbe-4982-abc6-408bf1b361b2" class=""><a href="https://devcenter.heroku.com/articles/git#reset-a-git-repository"><strong>Reset a Git Repository</strong></a></h1><p id="d2f2f228-c178-4548-85c0-18d18d9b85ba" class="">To reset or purge an app’s Heroku Git repository, use the <a href="https://github.com/heroku/heroku-repo">heroku-repo</a> CLI plugin:</p><pre id="a3eea9c9-0f2b-4819-9e94-3ed0f6ef530a" class="code code-wrap"><code>$ heroku plugins:install heroku-repo
+$ heroku repo:reset --app appname
+</code></pre><p id="c78bdd10-3c94-4c14-aaab-71432f085d9f" class="">Resetting the Git repository deletes all source code and Git history, so make sure you have another copy of the repository first.</p><h1 id="42022aaf-e1b8-4e4c-bc2c-ab284ec0d0e9" class=""><a href="https://devcenter.heroku.com/articles/git#keep-your-repository-size-small"><strong>Keep Your Repository Size Small</strong></a></h1><p id="65945fbb-38c5-4f88-a7ad-fb22d20505c4" class="">The uncompressed size of a checkout of <code>HEAD</code> from the repository, combined with the size of restored submodules, can’t exceed 1 GB.</p><p id="305bcdef-1b2d-47ea-b5d9-cf4fe155af31" class="">It’s not recommended to deploy large repositories over 600 MB They can cause timeouts and slow pushes overall. Running <code>heroku apps:info</code> shows you your repository size.</p><p id="650aec4b-77df-410c-8970-728d4eafe272" class="">Common causes of large repositories are binary files checked into the repository or constantly changing development logs. You can remove files committed by accident with <a href="http://git-scm.com/book/en/Git-Internals-Maintenance-and-Data-Recovery#_removing_objects">git filter-branch</a>. After running it, you must push your changes with the <code>--force</code> option, requiring coordination among your team.</p><p id="85764dec-683a-4eef-8343-77b474a40297" class="">After reducing the size of your repository locally, you must <a href="https://devcenter.heroku.com/articles/git#reset-a-git-repository">reset the app’s Git repository</a> before pushing it to Heroku again.</p><h1 id="048c63d5-c66c-4e10-817d-3f6fcf4cf800" class=""><a href="https://devcenter.heroku.com/articles/git#limits"><strong>Limits</strong></a></h1><p id="ebae50cb-3385-43c7-90cc-251633e60762" class="">To protect the Git service, Heroku imposes certain limits on Git repository use and content size.</p><p id="065c8496-f3d1-454a-977c-5225e976fb51" class="">Heroku limits users to a rolling window of 75 Git requests per hour, per user, per app. After reaching this limit, Heroku denies Git requests until request levels drop below the limit for a few minutes. You see an error message like:</p><pre id="d9f6fbc9-be06-4212-94a1-1af3811836f5" class="code code-wrap"><code> !  Too many requests for this Git repo. Please try again later.
+</code></pre><p id="b93ef260-6020-41f9-b6a0-787ea914a948" class="">If you reach this limit, ensure there are not automated processes or scripts polling the Git repository.</p><p id="4c5b97f9-da9a-4c6c-aba8-7f1a2e86c5d5" class="">In addition, the uncompressed size of a checkout of <code>HEAD</code> from the repository, combined with the size of restored submodules, can’t exceed 1 GB.</p><h1 id="225c2e5b-a57a-408f-85c8-ebe0d2e40f8b" class=""><a href="https://devcenter.heroku.com/articles/git#deploy-code-tracked-in-subversion-or-other-revision-control-systems"><strong>Deploy Code Tracked in Subversion or Other Revision Control Systems</strong></a></h1><p id="a440b1f9-cf89-414b-80a3-101299131880" class="">While Git is one of the best choices available for revision control, you don’t need to stop using your current revision control system. You can use Git purely as a deployment mechanism, existing side by side with your other tool.</p><p id="5e71b293-9d49-4872-ab5e-ca4046fe6878" class="">You can learn much more about <code>.gitignore</code> in <a href="https://devcenter.heroku.com/articles/gitignore"><strong>our article on the topic</strong></a>.</p><p id="8512ae2e-ce39-4fdb-8418-c4593440bb23" class="">For example, if you’re using Subversion, initialize your Git repository as described in the <a href="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli">Pre-requisites</a> section. Then, add a <code>.gitignore</code> file to tell Git to ignore your Subversion directories.</p><pre id="2859a46e-8855-41da-a443-a9db69a6d8a5" class="code code-wrap"><code>$ git init
+$ echo .svn &gt; .gitignore
+$ git add .
+$ git commit -m &quot;using git for heroku deployment&quot;
+</code></pre><p id="91cefcce-fb55-44f0-9df3-e53604b7421c" class="">Now tell Subversion to ignore Git:</p><pre id="512f77f6-82a6-4b4b-9cac-c65dc8a083e0" class="code code-wrap"><code>$ svn propset svn:ignore .git .
+property &#x27;svn:ignore&#x27; set on &#x27;.&#x27;
+$ svn commit -m &quot;ignoring git folder (git is used for heroku deployment)&quot;
+</code></pre><p id="569590b6-817d-4d25-b1ba-e43476fcad2e" class="">It’s recommended to use the <code>-f</code> (force flag) to avoid conflicts with other developers’ pushes. Since you’re using Git for your revision control, but as a transport only, using the force flag is a reasonable practice.</p><p id="b1aea38c-243e-4b21-a8b1-6d2ffc291dab" class="">Each time you wish to deploy to Heroku:</p><pre id="eb2815b8-7732-4764-b52b-9b7ae4be8615" class="code code-wrap"><code>$ git add -A
+$ git commit -m &quot;commit for deploy to heroku&quot;
+...
+
+$ git push -f heroku
+</code></pre><h1 id="b8f09de7-3076-464e-a0c3-103daf4970aa" class=""><a href="https://devcenter.heroku.com/articles/pipelines#github-sync"><strong>GitHub Sync</strong></a></h1><p id="302f15a8-f185-40bb-b2fc-9952a481c9fe" class="">Promoting from staging to production is great, but you can further optimize your flow by automatically deploying to staging using <a href="https://devcenter.heroku.com/articles/github-integration">GitHub integration</a>. For example, whenever the <code>master</code>branch is updated on GitHub and continuous integration (CI) tests pass, staging can be auto-deployed.</p><h1 id="991ee5d8-0cb4-4ad6-aa84-f77042cb53b5" class=""><a href="https://devcenter.heroku.com/articles/pipelines#review-apps"><strong>Review apps</strong></a></h1><p id="81cbdfaf-988f-4710-a362-e0912b62172c" class="">If you’re using GitHub, we highly recommend using pull requests and setting up corresponding <a href="https://devcenter.heroku.com/articles/github-integration-review-apps">review apps</a>.</p><p id="48f32fff-6626-4353-91cc-0ae9ca012648" class="">
+</p></div></article></body></html>

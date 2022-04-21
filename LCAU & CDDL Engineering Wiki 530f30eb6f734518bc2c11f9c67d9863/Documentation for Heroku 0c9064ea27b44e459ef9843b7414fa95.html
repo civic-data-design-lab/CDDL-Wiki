@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Documentation for Heroku</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0c9064ea-27b4-4e45-9ef9-843b7414fa95" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Screen_Shot_2022-03-29_at_12.55.01_PM.png"/></div><h1 class="page-title">Documentation for Heroku</h1></header><div class="page-body"><p id="71ce9f8c-57d9-4e85-80e6-7f40c5b4d8e0" class="">Reference <a href="https://devcenter.heroku.com/categories/heroku-architecture">https://devcenter.heroku.com/categories/heroku-architecture</a></p><p id="2a5d7e19-93d9-4ade-b5fa-3e39443cbf69" class=""><strong>Table of Contents</strong></p><nav id="8716c410-0502-4dac-9008-368b931f7274" class="block-color-gray_background table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3fe4adad-8d5c-42af-808a-8530113dcd47">Getting Started</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b45b33b1-469f-4be2-93f5-7dd8f25dabba">Manage Collaboration in Heroku</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fe6e2b75-9de8-48d2-929e-ea0d732182c5"><strong>Collaborator permissions for apps in a personal account</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8cf90cb3-8da1-453d-9334-98e24388b721"><strong>Add collaborators</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4a53bfe2-c1eb-4600-9c55-574bd56d2bc8"><strong>View collaborators</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3658ec6e-952f-41d9-93ae-0328ccea2d69"><strong>Remove collaborators</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b1980d60-2a2f-464b-847d-391a9eee43e7"><strong>Merging code changes</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6f0d3641-19c2-4f6c-8b19-d019735c0202">Getting Started as Collaborator</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ef51957b-994d-456a-8dcc-9609d70b6d6a"><strong>Clone the app repository</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cff92290-6626-4496-9751-0af1bf5e0e3a"><strong>Deploy the app</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#87d1f0b6-9420-4be5-847b-c46e616173e6"><strong>Open the app</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#42dd7a37-2081-474e-a6e9-2f36e7bad8c2"><strong>Get information about the app</strong></a></div></nav><h1 id="3fe4adad-8d5c-42af-808a-8530113dcd47" class="">Getting Started</h1><p id="2d3d1faa-889d-4e1a-a1d6-2a248ac3c6c2" class="">Follow the steps to create your app.</p><ul id="4439d47b-3f35-4eea-8013-3977e92e658c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Install Git</a></li></ul><ul id="f594d985-3056-48f5-9f4d-306b7a41b8dc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Getting started with Git</a></li></ul><ul id="49e44511-92dc-47c6-a967-0015eb970f9b" class="bulleted-list"><li style="list-style-type:disc"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Set%20up%20a8b7f6d1955e427585f5e0942fb58127.html">Set up Heroku CLI</a></li></ul><figure id="8592b1e0-1c52-4e67-b574-effd6c1e3238" class="link-to-page"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Getting%20started%20with%20your%20app%208592b1e01c524e67b574effd6c1e3238.html">Getting started with your app</a></figure><figure id="d940853f-9ad0-4fd2-b923-3270f17f84d2" class="link-to-page"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Deploy%20with%20Github%20d940853f9ad04fd2b9233270f17f84d2.html">Deploy with Github </a></figure><figure id="78c5fbb6-9f81-4af6-9ae3-3e7c56b402cf" class="link-to-page"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Deploy%20using%20Heroku%20CLI%20or%20Github%2078c5fbb69f814af69ae33e7c56b402cf.html">Deploy using Heroku CLI or Github</a></figure><figure id="cd4c4e78-2749-4009-b559-2052bb788d6f" class="link-to-page"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Choose%20the%20right%20database%20for%20your%20app%20cd4c4e7827494009b5592052bb788d6f.html">Choose the right database for your app</a></figure><figure id="d9c58660-ab0d-47cb-8d4a-fd8a8b612563" class="link-to-page"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Set%20up%20database%20d9c58660ab0d47cb8d4afd8a8b612563.html">Set up database</a></figure><h1 id="b45b33b1-469f-4be2-93f5-7dd8f25dabba" class="">Manage Collaboration in Heroku</h1><h2 id="fe6e2b75-9de8-48d2-929e-ea0d732182c5" class=""><strong>Collaborator permissions for apps in a personal account</strong></h2><p id="871cef90-450b-46ec-b2d0-47e76344d5f6" class="">Collaborators added to apps under personal accounts can perform any action that an owner can, except collaborators can not:</p><ul id="6daffd72-916e-4250-bec2-286feac6bbf6" class="bulleted-list"><li style="list-style-type:disc">Add or remove paid add-ons</li></ul><ul id="fbf712ab-158e-4666-9f08-cd5ced7c3b16" class="bulleted-list"><li style="list-style-type:disc">Delete, transfer or rename the app</li></ul><ul id="20a56c4b-942d-40f8-8d3e-c8ba866731c1" class="bulleted-list"><li style="list-style-type:disc">View invoices</li></ul><p id="e125e7ec-e621-452f-9bce-3799540cface" class=""><mark class="highlight-orange_background">These are the only actions that are restricted. Collaborators can perform any other action that an owner can, including scaling applications.</mark></p><h2 id="8cf90cb3-8da1-453d-9334-98e24388b721" class=""><strong>Add collaborators</strong></h2><p id="fa11bbb0-794d-48cb-b8ef-8eb8ab494c01" class="">Other developers can be invited to collaborate on your app by their email address.</p><pre id="6dc25472-35b1-43b2-9354-27b770f804ea" class="code code-wrap"><code>$ heroku access:add joe@example.com
+Adding joe@example.com to myapp collaborators... done
+</code></pre><p id="9a711baa-8d1a-42bd-b47f-2975694692fe" class="">To use the dashboard to add a collaborator:</p><ol type="1" id="44168e10-9831-4f21-a97a-ae134e30bf79" class="numbered-list" start="1"><li>Select the app in the dashboard.</li></ol><ol type="1" id="24e30a9c-c4bd-4bbb-ae48-c3a6300ad0e7" class="numbered-list" start="2"><li>Click the <code><strong>Access</strong></code> tab.</li></ol><ol type="1" id="5aa3d89c-97a9-4cab-a9c2-c4821a53d47b" class="numbered-list" start="3"><li>Click the <code><strong>Add collaborator</strong></code> button.</li></ol><ol type="1" id="70504aee-e980-4de4-b32a-73088c5018b2" class="numbered-list" start="4"><li>In the New collaborator window, type their email address.</li></ol><ol type="1" id="2d84f7ef-e142-4787-afd1-fdaf0035b7d5" class="numbered-list" start="5"><li>Click <code><strong>Save changes</strong></code>.</li></ol><p id="f346de00-e4a1-40eb-8873-c49f7a8ad912" class="">When you invite a collaborator, an email is sent to let them know they were granted access to the app. If no existing Heroku account matches the email specified, an invitation email is sent.</p><h2 id="4a53bfe2-c1eb-4600-9c55-574bd56d2bc8" class=""><strong>View collaborators</strong></h2><p id="cc9d221f-9d71-4e4f-a270-ce9885c1bb59" class="">Use the <code>heroku access</code> command to see the list of current collaborators:</p><pre id="cc04d3b3-f1ee-4921-9ac2-8c8fc40d1e5f" class="code code-wrap"><code>$ heroku access
+=== theirapp Collaborators
+adam@example.com owner
+joe@example.com  collaborator
+</code></pre><h2 id="3658ec6e-952f-41d9-93ae-0328ccea2d69" class=""><strong>Remove collaborators</strong></h2><p id="f5749b5f-07d7-47d5-8dad-1bdd260cbe8d" class="">You can revoke a collaborator’s access using the <code>heroku access:remove</code> command:</p><pre id="d53ebdc6-4e72-49d8-b878-f79c483597b5" class="code code-wrap"><code>$ heroku access:remove joe@example.com
+Removing joe@example.com from theirapp collaborators... done
+</code></pre><p id="467b34d1-5322-410b-98be-7a5c2136d00f" class="">To use the dashboard to remove a collaborator:</p><ol type="1" id="f1f1c023-b967-4fba-881d-a31c1e29e285" class="numbered-list" start="1"><li>Select the app in the dashboard.</li></ol><ol type="1" id="addc2c9e-aa9c-4280-9554-ad618dccfcdc" class="numbered-list" start="2"><li>Click the <code><strong>Access</strong></code> tab.</li></ol><ol type="1" id="44cac7e4-8a55-41ea-84a1-575fe2c0e8fb" class="numbered-list" start="3"><li>Click the <code><strong>x</strong></code> beside the collaborator’s email address.</li></ol><ol type="1" id="c4d9d200-9b32-4afb-bef2-0883bb94b631" class="numbered-list" start="4"><li>Click <code><strong>Delete Collaborator</strong></code>.</li></ol><p id="a9f13c6f-c17f-4a27-8082-0064cf7ef32d" class="">Once access has been revoked, the user is no longer able to deploy changes or modify the app’s configuration.</p><h2 id="b1980d60-2a2f-464b-847d-391a9eee43e7" class=""><strong>Merging code changes</strong></h2><p id="371e5117-acdc-43dd-a347-5f98133ff06c" class="">When you’re collaborating with other developers, you might be prevented from pushing to the repo and see a message like this:</p><pre id="e275a997-76b3-4ae4-b772-ee1b634f92c3" class="code code-wrap"><code>$ git push heroku
+error: remote &#x27;refs/heads/master&#x27; is not a strict subset of local ref &#x27;refs/heads/master&#x27;.
+maybe you are not up-to-date and need to pull first?
+</code></pre><p id="5ca2ed45-afbc-40d9-b914-971868f8ee32" class="">This means that other developers have pushed up changes that you need to pull down and merge with your local repository. The easiest way to do this is to run <code>git pull --rebase</code>. Ensure your changes don’t conflict with what you pulled down before deploying</p><h1 id="6f0d3641-19c2-4f6c-8b19-d019735c0202" class="">Getting Started as Collaborator</h1><figure id="a8b7f6d1-955e-4275-85f5-e0942fb58127" class="link-to-page"><a href="Documentation%20for%20Heroku%200c9064ea27b44e459ef9843b7414fa95/Set%20up%20a8b7f6d1955e427585f5e0942fb58127.html"><span class="icon">🔨</span>Set up</a></figure><p id="7f314d74-87ba-43f8-a319-45dbbfb2715e" class="">Install the <a href="https://cli.heroku.com/">Heroku CLI</a> on your local workstation. The CLI can be used to manage and scale your applications, to provision add-ons, to view the logs of your applications as they runs on Heroku, and more.</p><h2 id="ef51957b-994d-456a-8dcc-9609d70b6d6a" class=""><strong>Clone the app repository</strong></h2><p id="59a6e210-0cd8-4d1f-aeef-7d53ebe2f191" class="">Next, you should clone the app locally. The invitation email includes the name of the app. In this example, the app name is “theirapp”.</p><pre id="89bcccbc-2cb3-4bc3-a363-c4e01879f62e" class="code code-wrap"><code>$ heroku git:clone -a theirapp
+</code></pre><p id="7734ceb2-4cad-4f5b-bc8c-9a82828e3b71" class="">It’s strongly recommended that you get access to the canonical source code repository for the application (for instance on GitHub) and then use <code>heroku git:remote</code> to add a git remote to your checkout. For more information, see <a href="https://devcenter.heroku.com/articles/git#create-a-heroku-remote">Creating a Heroku Remote</a>.</p><h2 id="cff92290-6626-4496-9751-0af1bf5e0e3a" class=""><strong>Deploy the app</strong></h2><p id="20940021-2550-4c9a-b6c8-a473635f67bb" class="">When you are ready to deploy these changes, commit and then push your changes.</p><pre id="8a589272-1197-4ed7-a682-44b68f003e0d" class="code code-wrap"><code>$ git commit -a -m &quot;Description of the changes I made&quot;
+$ git push heroku master
+-----&gt; Heroku receiving push
+-----&gt; Launching.... done
+</code></pre><p id="3c3e7d11-6636-4b79-9f1d-4771985e8720" class="">To avoid getting out of sync with other collaborators, if you’re not using <a href="https://devcenter.heroku.com/articles/github-integration"><strong>GitHub Integration</strong></a>, be sure to push your changes to the canonical repository (typically with <code>git push origin master</code>) as well as to the Heroku remote.</p><h2 id="87d1f0b6-9420-4be5-847b-c46e616173e6" class=""><strong>Open the app</strong></h2><p id="4fb6b18b-0cd9-441a-b486-3f9a62c0b211" class="">You can open the app in your browser using the CLI.</p><pre id="f8b9f8c0-db12-449e-aa85-f306f952448a" class="code code-wrap"><code>$ heroku open
+</code></pre><h2 id="42dd7a37-2081-474e-a6e9-2f36e7bad8c2" class=""><strong>Get information about the app</strong></h2><p id="24229c95-a201-4933-81f1-27e90acc2261" class="">When someone grants you access to an app, you will receive an email with the app name and some other information to help you get started. You can get more information about the app by using the <code>heroku info</code> command.</p><pre id="08588118-6869-4948-8f5a-f60c94ab1144" class="code code-wrap"><code>$ heroku info --app theirapp
+</code></pre><p id="023c6dd1-79a3-417a-85a2-140ab1b2b6b4" class="">
+</p></div></article></body></html>

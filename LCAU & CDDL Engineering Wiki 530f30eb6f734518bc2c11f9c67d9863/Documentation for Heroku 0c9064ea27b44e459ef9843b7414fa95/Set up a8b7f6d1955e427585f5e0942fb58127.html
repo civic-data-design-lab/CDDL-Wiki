@@ -1,0 +1,707 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Set up</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a8b7f6d1-955e-4275-85f5-e0942fb58127" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔨</span></div><h1 class="page-title"><a href="https://devcenter.heroku.com/articles/collab#set-up"><strong>Set up</strong></a></h1></header><div class="page-body"><h1 id="7ce46a65-85eb-48f5-9586-ec39a6195143" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli"><strong>Install the Heroku CLI</strong></a></h1><h3 id="c6a9408b-c895-49c6-a9d8-79ed88fe28a2" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#pre-requisites">Pre-requisites</a></h3><p id="f12cbaae-a45a-48be-9b6f-d9918fe5e101" class="">The Heroku CLI requires <strong>Git</strong>, the popular version control system. If you don’t already have Git installed, complete the following:</p><blockquote id="9de0998e-5a1a-4d82-b463-3ed5300582bd" class="">Git installationFirst-time Git setup</blockquote><h3 id="65c928eb-e476-466b-bed3-0817bb855f4b" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-an-installer">Install with an Installer</a></h3><p id="e178e3a6-b514-4b14-b846-a306cd922f22" class="">The Windows installers display a warning titled “Windows protected your PC” to some users. To run the installation when this warning shows, click “More info”, verify the publisher as “salesforce.com, inc”, then click the “Run anyway” button.</p><h1 id="a4ac0c2a-762f-4757-ad78-c8f2075fe376" class=""><strong>macOS</strong></h1><pre id="7ac0a206-f790-47be-bf2f-d3f50c9f0748" class="code code-wrap"><code>$ brew tap heroku/brew &amp;&amp; brew install heroku</code></pre><h1 id="ba2191bf-dc6d-491f-9fcd-3a8b78c2ed12" class=""><strong>Windows</strong></h1><p id="06c0dbc0-bb17-46dc-96de-14756a6c1830" class="">Download the appropriate installer for your Windows installation:</p><p id="a103f94c-872a-415f-8e5d-743f883f9655" class=""><a href="https://cli-assets.heroku.com/heroku-x64.exe"><strong>64-bit installer</strong></a></p><p id="add4c9cf-a383-4ef6-a9a2-f68b4691b6b1" class=""><a href="https://cli-assets.heroku.com/heroku-x86.exe"><strong>32-bit installer</strong></a></p><h1 id="b76d824d-97e3-4125-8cb2-adfb7ed64dda" class=""><strong>Ubuntu 16+</strong></h1><p id="636a53ba-e24b-4164-b6f6-26c8d1e2e78d" class="">Run the following from your terminal:</p><pre id="f77ee047-f0df-4067-ab97-d6d0c3ce681a" class="code code-wrap"><code>$ sudo snap install --classic heroku</code></pre><p id="6a26ef93-9224-4e8a-8ead-bc9052dd7611" class=""><a href="https://snapcraft.io/">Snap is available on other Linux OS’s as well</a>.</p><h3 id="f83a93f6-0422-4006-8119-7a3067911196" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#standalone-installation-with-a-tarball">Standalone Installation with a Tarball</a></h3><p id="5825b3e4-f7e8-4094-b8ff-56ff74b023a5" class="">The standalone install is a simple tarball with a binary. It contains its own node.js binary and autoupdates.</p><p id="751a955b-6d68-479a-aef0-d0cebfec00d4" class="">To set up the CLI in <code>/usr/local/lib/heroku</code> and <code>/usr/local/bin/heroku</code>, run the following script. The script requires sudo and isn’t Windows compatible.</p><pre id="3f842202-8546-4a34-a1be-4c9a4076e020" class="code code-wrap"><code>$ curl https://cli-assets.heroku.com/install.sh | sh
+</code></pre><p id="6f325386-7ebf-4f43-9c80-7e7e4e45abaa" class="">You can also download one of the following tarballs and extract it yourself.</p><h3 id="a8f0e90f-3fc8-40af-9bbd-a52463add9b5" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#tarballs"><strong>Tarballs</strong></a></h3><p id="3c23698e-d6d2-4200-8ce8-01c6a1d5a674" class="">These tarballs are available in <code>gz</code> or <code>xz</code> compression. <code>xz</code> is much smaller but <code>gz</code> is more compatible.</p><ul id="4392e8ba-4710-4d91-a0b5-b25b34510f16" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/heroku-darwin-x64.tar.gz">macOS</a></li></ul><ul id="629c87a0-5980-4aee-825a-095b0d591eb2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/heroku-linux-x64.tar.gz">Linux (x64)</a></li></ul><ul id="6e38568d-b675-4f0f-8ad4-20550877a591" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/heroku-linux-arm.tar.gz">Linux (arm)</a></li></ul><ul id="f116c137-5855-4d23-847d-296a8ea3471e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/heroku-win32-x64.tar.gz">Windows (x64)</a></li></ul><ul id="ae039225-f4a8-437e-a655-9b2e5c05a517" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/heroku-win32-x86.tar.gz">Windows (x86)</a></li></ul><h3 id="3767cad3-6b48-4f6a-af6b-bed23a2f626a" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-ubuntu-debian-apt-get">Install with Ubuntu / Debian apt-get</a></h3><pre id="07a6e361-c127-45bc-a839-3d128eb3f912" class="code code-wrap"><code>$ curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+</code></pre><p id="11c719fc-9e40-423b-8929-a1c00cbc6061" class="">This version doesn’t autoupdate. Update it manually via <code>apt-get</code>. Use the <a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-an-installer">snap</a> or <a href="https://devcenter.heroku.com/articles/heroku-cli#standalone-installation-with-a-tarball">standalone installation</a> for an autoupdating version of the CLI.</p><h3 id="38400385-c3d7-4581-b5c1-658c46893b24" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#install-for-arch-linux">Install for Arch Linux</a></h3><p id="4f9c0a0c-82f2-4cf5-a22d-4269ceb97f28" class="">The community <a href="https://aur.archlinux.org/packages/heroku-cli">this package</a>maintains, notHeroku.</p><pre id="938aa1de-0482-468e-8f53-bc2602faac51" class="code code-wrap"><code>$ yay -S heroku-cli
+</code></pre><h3 id="5f97d7de-b6a2-45b3-bb74-4e5969b86302" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-npm">Install with npm</a></h3><p id="ccbc1e11-9198-4c1e-b90f-35aeb30fbd63" class="">The CLI is built with Node.js and installable via <code>npm</code>. Use this manual install method in environments where autoupdating isn’t ideal, or where Heroku doesn’t offer a prebuilt Node.js binary. ARM and BSD must use this installation method. You must have <code>node</code> and <code>npm</code> installed already. This method is also useful if you want fine-grained control over CLI updates such as in a tested script.</p><p id="3d86aaab-f3ca-407a-a8d0-f477b2a0bea3" class="">It’s strongly recommended to use one of the other installation methods if possible.</p><p id="ff3cd19f-8da2-4420-afe8-2fa492788092" class="">This installation method doesn’t autoupdate. It also requires you to use your system’s version of Node.js, which can be older than the version Heroku develops the CLI against. Heroku uses current releases of Node.js and doesn’t support older versions.</p><p id="f34b602a-c5ed-4318-adc3-6f956de19aec" class="">If you use any of the other installation methods, it includes the proper version of Node.js and doesn’t conflict with any other version on your system.</p><p id="53058fab-0031-4a57-ac3b-1804f9bf5f0e" class="">Also, this method doesn’t use the yarn lockfile for dependencies like the others do, even if you install with yarn. This method can cause issues if the CLI’s dependencies become incompatible in minor or patch releases.</p><pre id="62d619bf-e2f6-44a3-9d65-09ce469cacba" class="code code-wrap"><code>$ npm install -g heroku
+</code></pre><h1 id="8333092f-d203-4c4a-8ad9-f39ba5b195e2" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#verify-your-installation"><strong>Verify Your Installation</strong></a></h1><p id="6f5a8132-8514-447b-993d-00231e5929c4" class="">To verify your CLI installation, use the <code>heroku --version</code> command:</p><pre id="ea98bc03-0cdd-403e-9d1e-8c31e9cc84b1" class="code code-wrap"><code>$ heroku --version
+heroku/7.0.0 (darwin-x64) node-v8.0.0
+</code></pre><p id="481e68c1-9f61-4171-8976-1a9514a70255" class="">The output looks like <code>heroku/x.y.z. If you don&#x27;t see that output, and installed the Heroku CLI, check if you have an old</code>heroku` gem on your system. Uninstall it with <a href="https://devcenter.heroku.com/articles/heroku-cli#uninstall-the-legacy-heroku-gem">these instructions</a>.</p><h1 id="f74a0c55-3644-447f-ac85-270ccbd929ce" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#get-started-with-the-heroku-cli"><strong>Get Started with the Heroku CLI</strong></a></h1><p id="7dcfb8da-4675-44a2-9c52-48275a3cc8d3" class="">After you install the CLI, run the <code>heroku login</code> command. Enter any key to go to your web browser to complete login. The CLI then logs you in automatically.</p><pre id="cf797196-adb0-4df9-85a8-134ce761b4fa" class="code code-wrap"><code>$ heroku login
+heroku: Press any key to open up the browser to login or q to exit
+ ›   Warning: If browser does not open, visit
+ ›   https://cli-auth.heroku.com/auth/browser/***
+heroku: Waiting for login...
+Logging in... done
+Logged in as me@example.com
+</code></pre><p id="c6b54c2b-85b4-4083-88e3-5b765b5216cd" class="">If you’d prefer to stay in the CLI to enter your credentials, run <code>heroku login -i</code>.</p><p id="3d1c19f6-80ee-4c44-873f-97b87430a3d8" class="">You can’t use the <code>-i</code> option if you have <a href="https://devcenter.heroku.com/articles/multi-factor-authentication#log-in-with-mfa"><strong>multi-factor authentication</strong></a> enabled due to a technical dependency on web browsers for verification.</p><pre id="1959ff90-94aa-4b21-9a5f-7a5d26f629f8" class="code code-wrap"><code>$ heroku login -i
+heroku: Enter your login credentials
+Email: me@example.com
+Password: ***************
+Two-factor code: ********
+Logged in as me@heroku.com
+</code></pre><p id="5b005df2-d95a-484e-b3a3-584fe3ca6b3b" class="">The CLI saves your email address and an API token to <code>~/.netrc</code> for future use. For more information, see <a href="https://devcenter.heroku.com/articles/authentication">Heroku CLI Authentication</a>.</p><p id="7af9460b-4f91-478b-b4e1-a1fe0e379ad6" class="">Now you’re ready to create your first Heroku app:</p><pre id="1beeeac5-2d3f-4a1c-aea9-50f57333e6db" class="code code-wrap"><code>$ cd ~/myapp
+$ heroku create
+Creating app... done, ⬢ sleepy-meadow-81798
+https://sleepy-meadow-81798.herokuapp.com/ | https://git.heroku.com/sleepy-meadow-81798.git
+</code></pre><p id="e2173e7c-b1d9-43f9-a7d7-5a2164976cf4" class="">Check out your preferred language’s <a href="https://devcenter.heroku.com/start">getting started guide</a> for a comprehensive introduction to deploying your first app. See <a href="https://devcenter.heroku.com/articles/heroku-cli-commands">Heroku CLI Commands</a> for a full list of commands.</p><h1 id="c2fb4647-2c9c-4cbe-bddc-3fdaa09e9301" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#staying-up-to-date"><strong>Staying Up to Date</strong></a></h1><p id="8965b5e7-8c51-4fe5-bd32-78b3164dc4f4" class="">The Heroku CLI keeps itself and its plugins (except linked plugins) up to date automatically, <em>unless</em>you installed the <a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-ubuntu-debian-apt-get">Debian/Ubuntu package</a> or used <a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-npm"><code>npm install</code></a>.</p><p id="6b5125b3-ef68-45bd-81fa-f18b09aa07c9" class="">When you run a <code>heroku</code> command, a background process checks for the latest available version of the CLI. If a new version is found, it’s downloaded and stored in <code>~/.local/share/heroku/client</code>. This background check happens at most once every 4 hours.</p><p id="268144b8-37b4-4d89-8e1b-f6ac8850d0ff" class="">The <code>heroku</code> binary checks for an up-to-date client in <code>~/.local/share/heroku/client</code> before using the originally installed client.</p><h3 id="52481aee-0f63-43df-b7ba-b777be0cfb92" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#latest-release-shas">Latest Release SHAs</a></h3><h3 id="a48dca3c-caab-45ff-b817-84e18ce57d00" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#darwin"><strong>Darwin</strong></a></h3><ul id="a0fce9cb-1b61-4ae4-853b-695a00975948" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/darwin-x64">x64</a></li></ul><h3 id="735906cb-e436-411c-95b1-d2003c839c78" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#latest-release-shas-linux"><strong>Linux</strong></a></h3><ul id="b8a0e412-fcff-484a-b6f6-4b02d77b1464" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/linux-arm">arm</a></li></ul><ul id="d7242e72-59c5-4aa4-a11e-30e82f7c21f1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/linux-x64">x64</a></li></ul><h3 id="e5eb1fc2-335a-4c54-a1a0-9d1278a873b9" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#latest-release-shas-windows"><strong>Windows</strong></a></h3><ul id="55e15534-9aa9-447f-a849-6ee43285ca41" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/win32-x64">x64</a></li></ul><ul id="808d1e42-8764-4be9-a20a-7e5b05d4216c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cli-assets.heroku.com/win32-x86">x86</a></li></ul><h1 id="ec1ff113-575f-4c7b-b877-c26f8fc46bdb" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#useful-cli-plugins"><strong>Useful CLI Plugins</strong></a></h1><p id="22b5c2f1-4711-46ed-b1ad-d89362547797" class="">CLI plugins allow you to extend your CLI installation. Install a CLI plugin with <code>heroku plugins:install someplugin</code>. See <a href="https://devcenter.heroku.com/articles/using-cli-plugins">Using CLI Plugins</a> for more information on plugin management.</p><p id="baeb6879-ba25-4cc7-865f-ee93474b401c" class="">Here are some useful plugins:</p><ul id="6f20e2eb-b92c-49ea-a629-7aee6cb2d484" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-builds">heroku-builds</a> — View builds, purge the build cache, and create builds from tarballs.</li></ul><ul id="8428000b-a65a-4763-8324-7e036f6431ae" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-repo">heroku-repo</a> — Commands to manipulate an app’s Heroku git repository.</li></ul><ul id="71f5f3cb-a825-40af-ba9e-30bc9e72c131" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-api-plugin">api</a> — Make ad-hoc API requests (such as <code>heroku api GET /account</code>).</li></ul><ul id="fdafede2-1f36-4e33-9d6c-a0884f42f698" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-pg-extras">heroku-pg-extras</a> — Provides extra <code>heroku pg:*</code> commands.</li></ul><ul id="dcd683e0-39ab-47c1-b7d5-454221c43c66" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-slugs">heroku-slugs</a> — Downloads app slugs.</li></ul><ul id="63996db9-6c68-422a-b318-a6daaaaa5f6f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-kafka-jsplugin">heroku-kafka</a> — Manage Heroku Kafka.</li></ul><ul id="2f082509-3a5b-4ba9-8721-10f835a6546c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/heroku/heroku-guardian">heroku-guardian</a> - View various configurations within Heroku that help secure your apps, spaces, and users.</li></ul><ul id="a6cc0843-2592-469a-83a1-4fcd00c62548" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/papertrail/papertrail-heroku-plugin">heroku-papertrail</a> — Display, tail, and search for logs with <a href="https://elements.heroku.com/addons/papertrail">Papertrail</a>.</li></ul><ul id="5309e2f9-aece-4fee-8114-19e7a22e1fdd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/oavanruiten/advanced-scheduler">advanced-scheduler</a> — Create and manage your <a href="https://elements.heroku.com/addons/advanced-scheduler">Advanced Scheduler</a> triggers.</li></ul><h1 id="de382445-2270-40cf-bc45-334fbbcd1ce6" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#cli-architecture"><strong>CLI Architecture</strong></a></h1><p id="523596f8-0e63-405b-bbdd-39cbb53a36ab" class="">The Heroku CLI is built with the Open CLI Framework (<a href="https://oclif.io/">oclif</a>), developed within Heroku / Salesforce. oclif is available as a framework for any developer to build a large or a small CLI. The framework includes a CLI generator, automated documentation creation, and testing infrastructure.</p><p id="f900d997-6881-4865-b7eb-a24c9e92dce8" class="">The code for the Heroku CLI is also <a href="https://github.com/heroku/cli">open source</a>. It does <em>not</em> require Node.js or any other dependencies to run. Unless you install the <a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-ubuntu-debian-apt-get">Debian/Ubuntu package</a> or used <a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-npm"><code>npm install</code></a>, the CLI contains its own Node.js binary that doesn’t conflict with other applications.</p><h1 id="c0c58f28-bcc0-4a7b-868e-e1fbe1a938d3" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#troubleshooting-the-heroku-cli"><strong>Troubleshooting the Heroku CLI</strong></a></h1><p id="5a445747-1f4a-4da3-9955-2e70f23f6cdd" class="">If you’re having issues with the CLI, ensure that you’re using the <a href="http://cli-assets.heroku.com/version">latest version</a>. If you’re not, try updating with <code>heroku update</code>.</p><p id="c958c37b-abb7-4015-9b6f-2028d0b1cc1f" class="">Not all methods of installation support <code>heroku update</code>.</p><ul id="adab835c-b673-43f8-8ca4-b5d86c601037" class="bulleted-list"><li style="list-style-type:disc">If you installed the CLI with <code>apt</code>, you must use <code>sudo apt-get update &amp;&amp; sudo apt-get upgrade heroku</code>.</li></ul><ul id="4b02168f-adc8-4319-986b-ccf88ae3c412" class="bulleted-list"><li style="list-style-type:disc">If you installed the CLI with <code>npm</code> or <code>yarn</code>, you must use <code>npm upgrade -g heroku</code> or <code>yarn global upgrade heroku</code>.</li></ul><p id="1b2ffbe2-056a-4333-a5c8-73c25bb6893f" class="">If the CLI fails to update, try <a href="https://devcenter.heroku.com/articles/heroku-cli#uninstall-the-heroku-cli">uninstalling it</a>, then reinstalling it. Ensure that you don’t have the legacy Heroku Toolbelt or Heroku Ruby gem installed by using <code>which heroku</code> or <code>where heroku</code>(on Windows) to confirm what the <code>heroku</code> command points to. Some users must modify their <code>PATH</code> to include it (<code>/usr/local/bin/heroku</code> for most installations).</p><p id="b916170a-8069-4746-9ddb-47cf7419d977" class="">If you’re still encountering an issue, you can set the following debugging environment variables to help diagnose it:</p><div id="bf552f6d-4c49-4e53-aa7e-0bc863f401c9" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Environment Variable</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Description</th></tr></thead><tbody><tr id="df18db11-8995-414a-99f5-18367cd7ea3c"><td class="cell-title"><a href="Set%20up%20a8b7f6d1955e427585f5e0942fb58127/Untitled%20Database%20bf552f6d4c494e53aa7e0bc863f401c9/Untitled%20df18db118995414a99f518367cd7ea3c.html">Untitled</a></td><td class="cell-T}H{"><code>HEROKU_DEBUG=1</code></td><td class="cell-MknR">Shows debugging information mostly related to Heroku API interactions</td></tr><tr id="63c6e1d2-ee3c-4b3b-ac15-a66d889d9776"><td class="cell-title"><a href="Set%20up%20a8b7f6d1955e427585f5e0942fb58127/Untitled%20Database%20bf552f6d4c494e53aa7e0bc863f401c9/Untitled%2063c6e1d2ee3c4b3bac15a66d889d9776.html">Untitled</a></td><td class="cell-T}H{"><code>HEROKU_DEBUG_HEADERS=1</code></td><td class="cell-MknR">Alongside <code>HEROKU_DEBUG=1</code>, shows HTTP headers</td></tr><tr id="6119ce58-c925-4886-8725-da0091898894"><td class="cell-title"><a href="Set%20up%20a8b7f6d1955e427585f5e0942fb58127/Untitled%20Database%20bf552f6d4c494e53aa7e0bc863f401c9/Untitled%206119ce58c92548868725da0091898894.html">Untitled</a></td><td class="cell-T}H{"><code>DEBUG=*</code></td><td class="cell-MknR">Shows verbose debugging information</td></tr></tbody></table></div><p id="395a59eb-dbd4-46ad-b1b0-eae9f5aeb19d" class="">You can also check the CLI’s error logfile, stored at one of the following locations depending on your operating system:</p><div id="a6919009-fc24-47b5-a028-7a1b65cf3932" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>OS</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Location</th></tr></thead><tbody><tr id="1d9e92b0-8021-4885-b88d-290dd497e1db"><td class="cell-title"><a href="Set%20up%20a8b7f6d1955e427585f5e0942fb58127/Untitled%20Database%20a6919009fc2447b5a0287a1b65cf3932/macOS%201d9e92b080214885b88d290dd497e1db.html">macOS</a></td><td class="cell-Kovr"><code>~/Library/Caches/heroku/error.log</code></td></tr><tr id="cecb2be6-fbb1-414a-b1e7-b0e6334de2d8"><td class="cell-title"><a href="Set%20up%20a8b7f6d1955e427585f5e0942fb58127/Untitled%20Database%20a6919009fc2447b5a0287a1b65cf3932/Windows%20cecb2be6fbb1414ab1e7b0e6334de2d8.html">Windows</a></td><td class="cell-Kovr"><code>%LOCALAPPDATA%\heroku\error.log</code></td></tr><tr id="1c26d3fa-1a1b-423f-8e0d-c7b9d5f47b0b"><td class="cell-title"><a href="Set%20up%20a8b7f6d1955e427585f5e0942fb58127/Untitled%20Database%20a6919009fc2447b5a0287a1b65cf3932/Linux%20Other%201c26d3fa1a1b423f8e0dc7b9d5f47b0b.html">Linux/Other</a></td><td class="cell-Kovr"><code>~/.cache/heroku/error.log</code> (or <code>XDG_CACHE_HOME</code> if set)</td></tr></tbody></table></div><p id="815fb165-fc0d-4388-943e-868680f6206c" class="">If you continue to have problems and the CLI is up to date, or if updating fails for other reasons, reset the CLI by deleting its user directories. These directories get replaced automatically. Deleting them doesn’t log you out but you lose any installed plugins.</p><p id="743d4613-697f-45f8-b477-fdb22738c647" class="">First, run <code>heroku plugins</code> to list your installed plugins so you can make sure to reinstall them.</p><p id="599d4d2d-c6da-4406-abdc-a4a55339f59e" class="">Then, delete the following directories:</p><p id="9e259e22-9fa3-4087-bf1e-d4953d96668f" class="">Windows:</p><ul id="ae828dcf-b33e-47f4-92d3-258ca4f54a5b" class="bulleted-list"><li style="list-style-type:disc"><code>%LOCALAPPDATA%\heroku</code></li></ul><p id="70a67909-80fb-4d4a-91ce-f793b95915bc" class="">macOS/Linux/Other:</p><ul id="8bc4bacf-d254-4d5d-a203-21d336b74937" class="bulleted-list"><li style="list-style-type:disc"><code>~/.local/share/heroku</code> (or <code>XDG_DATA_HOME</code> if set)</li></ul><ul id="b999ef75-a8e2-41a0-94f9-9d43a4e99f50" class="bulleted-list"><li style="list-style-type:disc">Either <code>~/Library/Caches/heroku</code> on macOS, or <code>~/.cache/heroku</code> on Linux/Other (or <code>XDG_CACHE_HOME</code> if set)</li></ul><h3 id="34a258ab-ec7f-4224-bdf1-1ea054a53dfd" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#login-issues">Login Issues</a></h3><p id="6e2b16a9-8194-4447-8964-8fcf0a28eb62" class="">If you’re experiencing issues with logging in, try moving your <code>.netrc</code> file. This file is where the CLI stores credentials:</p><pre id="7d752447-85cf-46bf-949f-6a9f03ecce3d" class="code code-wrap"><code>$ mv ~/.netrc ~/.netrc.backup
+$ heroku login
+</code></pre><p id="b819b5d8-5f7d-439a-8bb1-b4378c6ab2e9" class="">On Windows, the file is named <code>_netrc</code>.</p><h3 id="62b14a75-6541-4f1b-aa7e-c3778acddfa0" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#homebrew-specific-issues">Homebrew-Specific Issues</a></h3><p id="73d506b0-68ef-4a86-99a8-98fe7bf7bca1" class="">If you get legacy warnings even with the latest homebrew version of <code>heroku</code> installed, the binary <code>heroku</code> command in your <code>PATH</code> environment variable isn’t pointing to the version that brew installed.</p><p id="415a2934-6fb1-4ab8-a32b-a636e0c39363" class="">First, run <code>which heroku</code> to see what binary <code>heroku</code> is pointing to. If it isn’t <code>/usr/local/bin/heroku</code>, delete the binary it is pointing to. You can also make <code>/usr/local/bin/</code>higher up in your <code>PATH</code> environment variable by modifying your <code>~/.bashrc</code> file or equivalent.</p><p id="d0eaacf3-577e-478f-86ed-19c3de709107" class="">Next, run <code>brew link --overwrite heroku</code> to make sure that <code>/usr/local/bin/heroku</code> is pointing to the new CLI. If you continue to have trouble, run <code>brew doctor</code> to point out any issues with your system.</p><h3 id="9a23b459-d1e8-4c2a-8ee8-59f3aa55b421" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#apple-silicon-issues">Apple Silicon Issues</a></h3><p id="ce319ccf-c95e-4c8d-bf18-c1ce9239cfd3" class="">If you’re getting the following error on a machine with an Apple M1 chip, you haven’t installed or declined to install Rosetta 2.</p><p id="5d9fd7b5-fded-4fe7-83a2-8fb0376f9d4c" class=""><code>Bad CPU type in executable</code></p><p id="f9ff54fb-b8bb-4b2f-8764-f727be76aa64" class="">Installing <a href="https://support.apple.com/en-us/HT211861">Rosetta 2</a> resolves this issue.</p><p id="efc60309-d6fa-4735-b480-68f813a26f36" class="">If you don’t want to install Rosetta 2 on your machine, you can <a href="https://devcenter.heroku.com/articles/heroku-cli#install-with-npm">install the Heroku npm package</a>globally and use your own Node binary locally. Only v16 of Node has M1 ARM support and npm isn’t the recommended install method.</p><h1 id="c657ae0f-4eff-461d-855c-628e30212c25" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstall-the-heroku-cli"><strong>Uninstall the Heroku CLI</strong></a></h1><p id="5b9909b9-f865-4d66-94bf-5c176c08d176" class="">This action also deletes all CLI plugins.</p><h3 id="e59d222c-5f42-4578-936a-26751fb81f58" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#macos">macOS</a></h3><p id="c0e48f55-28bb-4ef7-ad9d-f9b1fab8fa89" class="">On macOS, you can uninstall the CLI by typing:</p><pre id="b9c0e7d2-6ae3-4eba-b617-24b25266ec9e" class="code code-wrap"><code>$ rm -rf /usr/local/heroku /usr/local/lib/heroku /usr/local/bin/heroku ~/.local/share/heroku ~/Library/Caches/heroku
+</code></pre><h3 id="6dd76089-eaeb-4e89-9145-22fc5914f516" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#homebrew-installs"><strong>Homebrew Installs</strong></a></h3><p id="33ee4c4f-b5cf-41c3-adce-e3c08a9e43b9" class="">If you installed the Heroku CLI using Homebrew, you can uninstall the CLI by typing:</p><pre id="9cecb344-d65f-42ef-b0c9-36af49fb5d10" class="code code-wrap"><code>$ brew uninstall heroku
+$ rm -rf ~/.local/share/heroku ~/Library/Caches/heroku
+</code></pre><h3 id="65787257-6854-49fc-b7db-04634a1459b1" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstall-the-heroku-cli-linux">Linux</a></h3><h3 id="9b4eb083-1e11-41e2-a913-8d9feddaebc8" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#standalone-install"><strong>Standalone Install</strong></a></h3><p id="f15883c0-54c8-47bf-92ad-e60124e74e89" class="">For standalone installs, you can uninstall the CLI by typing:</p><pre id="7657d05f-197d-4f50-bd86-c4b4ffdc79d4" class="code code-wrap"><code>$ rm /usr/local/bin/heroku
+$ rm -rf /usr/local/lib/heroku /usr/local/heroku
+$ rm -rf ~/.local/share/heroku ~/.cache/heroku
+</code></pre><h3 id="92bc1ad3-c47c-4eb0-9757-dda991aa7298" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#debian-and-ubuntu-installs"><strong>Debian and Ubuntu Installs</strong></a></h3><p id="2f0298d4-b708-4dd1-9e7d-0c0e2d997648" class="">For Debian/Ubuntu, you can uninstall the CLI by typing:</p><pre id="46f1e752-1c74-456e-94bc-24f3074d009d" class="code code-wrap"><code>$ sudo apt-get remove heroku heroku-toolbelt
+$ sudo rm /etc/apt/sources.list.d/heroku.list
+</code></pre><p id="a617c3f6-dc51-4e54-aa61-b7280d2da606" class="">If you have <code>$XDG_DATA_HOME</code>, or <code>$XDG_CACHE_HOME</code>, it uses those variables instead of <code>~/.local/share</code>, and <code>~/.cache</code>.</p><p id="5a6d5e17-1c65-404d-a7e4-36da4abbc8ac" class="">You can remove the release key by running these commands:</p><pre id="61e7ad4e-a1dd-4872-911c-afccb9abdfaf" class="code code-wrap"><code>$ sudo apt-key list
+$ sudo apt-key del KEYFROMABOVE
+</code></pre><h3 id="1abbe9e3-4798-4bc8-8b5d-7e04ab27b4aa" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstall-the-heroku-cli-windows">Windows</a></h3><p id="ef28c5a9-5c52-4730-9b97-a02f361541a4" class="">On Windows, to uninstall the Heroku CLI:</p><ol type="1" id="fa82af9c-0161-43f0-9f6a-661305a35ea0" class="numbered-list" start="1"><li>Click <code><strong>Start &gt; Control Panel &gt; Programs &gt; Programs and Features</strong></code>.</li></ol><ol type="1" id="bb3b791e-be6a-4496-9959-094e84b34837" class="numbered-list" start="2"><li>Select <code><strong>Heroku CLI</strong></code>, and then click <code><strong>Uninstall</strong></code>. (Note that the uninstaller is unsigned).</li></ol><p id="80f016a0-b836-4dd8-849e-402ea3211da4" class="">The Windows uninstaller is <em>not</em> automatically updated alongside the CLI. If it’s been a while since you first installed the CLI, manually install the latest version of the CLI to obtain an up-to-date uninstaller.</p><p id="6c8b1703-dfa6-4285-9689-e001d00005db" class="">If the uninstall is unsuccessful, manually delete <code>%LOCALAPPDATA%\heroku</code> along with the directory in Program Files.</p><h3 id="9970acf3-19b7-499a-b67f-b2aa00ba9851" class=""><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstall-the-legacy-heroku-gem">Uninstall the Legacy heroku Gem</a></h3><p id="f4a87dfa-6ae8-48ff-8cfd-de2597383f97" class="">To find out where the executable is, run <code>which</code>.</p><pre id="ce648991-15ae-43ec-b1ac-cef055dfd9c3" class="code code-wrap"><code>$ which heroku
+/usr/local/heroku/bin/heroku
+</code></pre><p id="352be0bf-fdac-42f0-9546-b5333b605a0b" class="">Ensure the path to the <code>heroku</code> command isn’t in a Ruby gem directory.</p><p id="00dce31a-37e2-4b71-b0d1-947c98fe7aa9" class="">If it is, uninstall it and any other <code>heroku</code> gems:</p><pre id="42c08cdb-5368-48b9-9a17-f6f298311569" class="code code-wrap"><code>$ gem uninstall heroku --all
+</code></pre></div></article></body></html>
