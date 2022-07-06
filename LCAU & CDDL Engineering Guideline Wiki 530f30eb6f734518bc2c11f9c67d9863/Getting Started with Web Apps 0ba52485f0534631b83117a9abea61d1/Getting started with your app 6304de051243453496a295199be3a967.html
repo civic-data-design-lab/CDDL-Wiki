@@ -1,0 +1,803 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Getting started with your app</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6304de05-1243-4534-96a2-95199be3a967" class="page sans"><header><h1 class="page-title">Getting started with your app</h1></header><div class="page-body"><p id="43ce99d9-85c3-4f45-ac2f-bd6bde7ca70b" class=""><strong>Table of Contents</strong></p><nav id="827ce6e6-5053-495d-b059-ce31748c5029" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#58f1680b-9868-41ee-8bf9-1b03ba405679">Choose your framework for backend</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9002d378-016a-4af9-9b93-4782286214db"><strong>Prepare the app</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#95d59a94-4183-4984-b285-62ba1150134e"><strong>Deploy the app</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ce5a301e-4210-49f2-8d6e-b33eaea053e8"><strong>Define a Procfile</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#115463a1-314e-4a23-9c47-d98e6aacfa5e">Microsoft Windows</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4762ba9c-81d1-488c-a34a-39350f19c75f"><strong>Install app dependencies locally</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#683b1f56-67f5-4a57-88c3-45d25c1ae7fc"><strong>Run the app locally</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9790e571-8af2-4c3b-89a1-6f99b13b9e78"><strong>Push local changes</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0284592c-e95c-42a7-b0b1-3296d57bbf43"><strong>Define config vars</strong></a></div></nav><p id="b01eec20-566c-4297-8f35-bd34eed267e1" class="">
+</p><h1 id="58f1680b-9868-41ee-8bf9-1b03ba405679" class="">Choose your framework for backend</h1><p id="060fcf20-7214-4851-97f7-825b54766fd1" class="">Heroku supports all the main frameworks</p><ul id="f8006d77-e823-428b-91aa-e1cbec9e0504" class="bulleted-list"><li style="list-style-type:disc">Python</li></ul><ul id="60c0272d-a928-40b1-9c49-60b4555b1123" class="bulleted-list"><li style="list-style-type:disc"><a href="https://nodejs.org/api/synopsis.html">Node js</a></li></ul><ul id="eaf6d4b6-f525-4cb3-bd39-a284f4ae3a32" class="bulleted-list"><li style="list-style-type:disc">PHP</li></ul><ul id="ad4f848e-d24b-4405-907c-ba05b883c1c7" class="bulleted-list"><li style="list-style-type:disc">Go</li></ul><p id="4a8a327f-26f5-4c15-b8c3-4643dda4590c" class="">
+</p><h1 id="9002d378-016a-4af9-9b93-4782286214db" class=""><strong>Prepare the app</strong></h1><p id="93af6e5f-1032-4d74-821a-b54c59ff8556" class="">In this step, you will prepare a simple application that can be deployed.</p><p id="db50470f-0b74-4a1b-9e8c-b1fa263c8e80" class=""><strong>Before continuing, make sure Git is installed (see </strong><a href="https://devcenter.heroku.com/articles/getting-started-with-python#set-up"><strong>Set up</strong></a><strong>).</strong></p><p id="9818f664-09b4-4d5a-9adb-aaa09b2a0a08" class="">To clone the sample application so that you have a local version of the code that you can then deploy to Heroku, execute the following commands in your local command shell or terminal:</p><pre id="9715936f-2872-452d-ae83-eabb16e27fde" class="code code-wrap"><code>$ git clone https://github.com/heroku/python-getting-started.git
+$ cd python-getting-started
+</code></pre><p id="33ea1a9d-333f-4942-9c7c-557639ec3c3a" class="">Link to the Github repository: <a href="https://github.com/heroku?q=getting&amp;type=all&amp;language=&amp;sort=">https://github.com/heroku?q=getting&amp;type=all&amp;language=&amp;sort=</a></p><p id="2b242da0-e902-4dff-821c-0d47030d8d4d" class="">You now have a functioning git repository that contains a simple application, a <code>runtime.txt</code>specifying which Python version will be used, and a <code>requirements.txt</code>, which is used by Python’s dependency manager, Pip.</p><figure id="0683fb2f-e8fd-4b4e-af3b-fbb712fc6711" class="image"><a href="Getting%20started%20with%20your%20app%206304de051243453496a295199be3a967/Screen_Shot_2022-03-31_at_9.28.13_AM.png"><img style="width:3056px" src="Getting%20started%20with%20your%20app%206304de051243453496a295199be3a967/Screen_Shot_2022-03-31_at_9.28.13_AM.png"/></a></figure><figure id="6e0f95b4-263b-4735-a38e-7bd7ea442a6a" class="image"><a href="Getting%20started%20with%20your%20app%206304de051243453496a295199be3a967/Screen_Shot_2022-03-31_at_8.59.48_AM.png"><img style="width:3432px" src="Getting%20started%20with%20your%20app%206304de051243453496a295199be3a967/Screen_Shot_2022-03-31_at_8.59.48_AM.png"/></a></figure><figure id="3258c15f-18f0-4009-b53f-208b45282c48" class="image"><a href="Getting%20started%20with%20your%20app%206304de051243453496a295199be3a967/Screen_Shot_2022-03-31_at_8.58.41_AM.png"><img style="width:3446px" src="Getting%20started%20with%20your%20app%206304de051243453496a295199be3a967/Screen_Shot_2022-03-31_at_8.58.41_AM.png"/></a></figure><h1 id="95d59a94-4183-4984-b285-62ba1150134e" class=""><strong>Deploy the app</strong></h1><p id="83dc32e4-3a92-4f21-8bc2-d56435f9e86e" class="">In this step you will deploy the app to Heroku.</p><p id="3fa607c9-e6b0-446e-88e1-8e6cd94e62df" class=""><strong>Before continuing, make sure both Git and the Heroku CLI are installed (see </strong><a href="https://devcenter.heroku.com/articles/getting-started-with-python#set-up"><strong>Set up</strong></a><strong>).</strong></p><p id="35ea2d3f-fd46-45d4-9fc8-64b48fe6f2c9" class="">Create an app on Heroku, which prepares Heroku to receive your source code:</p><pre id="c7636a7e-a3d7-4c96-8070-ee76229634f3" class="code code-wrap"><code>$ heroku create
+Creating app... done, ⬢ serene-caverns-82714
+https://serene-caverns-82714.herokuapp.com/ | https://git.heroku.com/serene-caverns-82714.git
+</code></pre><p id="dbe0ea6f-3b03-4357-aede-f9b09a469ec0" class="">When you create an app, a git remote (called <code>heroku</code>) is also created and associated with your local git repository.</p><p id="f63494f8-c871-4175-94af-6993c340629b" class="">Heroku generates a random name (in this case <code>serene-caverns-82714</code>) for your app, or you can pass a parameter to specify your own app name.</p><p id="6c66f10d-b06e-477d-b299-3782d60c4137" class="">Now deploy your code:</p><pre id="35dd85c6-3ae5-47d0-a48c-35923b6f6a24" class="code code-wrap"><code>$ git push heroku main
+Enumerating objects: 509, done.
+Counting objects: 100% (509/509), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (238/238), done.
+Writing objects: 100% (509/509), 94.80 KiB | 94.80 MiB/s, done.
+Total 509 (delta 234), reused 509 (delta 234), pack-reused 0
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----&gt; Building on the Heroku-20 stack
+remote: -----&gt; Determining which buildpack to use for this app
+remote: -----&gt; Python app detected
+remote: -----&gt; Using Python version specified in runtime.txt
+remote: -----&gt; Installing python-3.10.3
+remote: -----&gt; Installing pip 21.3.1, setuptools 57.5.0 and wheel 0.37.0
+remote: -----&gt; Installing SQLite3
+remote: -----&gt; Installing requirements with pip
+remote:        Collecting django
+remote:          Downloading Django-4.0.1-py3-none-any.whl (8.0 MB)
+remote:        Collecting gunicorn
+remote:          Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)
+remote:        Collecting django-heroku
+remote:          Downloading django_heroku-0.3.1-py2.py3-none-any.whl (6.2 kB)
+remote:        Collecting asgiref&lt;4,&gt;=3.4.1
+remote:          Downloading asgiref-3.4.1-py3-none-any.whl (25 kB)
+remote:        Collecting sqlparse&gt;=0.2.2
+remote:          Downloading sqlparse-0.4.2-py3-none-any.whl (42 kB)
+remote:        Collecting psycopg2
+remote:          Downloading psycopg2-2.9.3.tar.gz (380 kB)
+remote:          Preparing metadata (setup.py): started
+remote:          Preparing metadata (setup.py): finished with status &#x27;done&#x27;
+remote:        Collecting dj-database-url&gt;=0.5.0
+remote:          Downloading dj_database_url-0.5.0-py2.py3-none-any.whl (5.5 kB)
+remote:        Collecting whitenoise
+remote:          Downloading whitenoise-5.3.0-py2.py3-none-any.whl (19 kB)
+remote:        Building wheels for collected packages: psycopg2
+remote:          Building wheel for psycopg2 (setup.py): started
+remote:          Building wheel for psycopg2 (setup.py): finished with status &#x27;done&#x27;
+remote:          Created wheel for psycopg2: filename=psycopg2-2.9.3-cp310-cp310-linux_x86_64.whl size=586593 sha256=25ea6b40570d00fb7329c9691e557245a1050857323893e93068f0f07ecef238
+remote:          Stored in directory: /tmp/pip-ephem-wheel-cache-d5wzowyy/wheels/81/b6/3d/091aad3e8919ea76c84c2674b02ce3ab52de882e091c39249e
+remote:        Successfully built psycopg2
+remote:        Installing collected packages: sqlparse, asgiref, whitenoise, psycopg2, django, dj-database-url, gunicorn, django-heroku
+remote:        Successfully installed asgiref-3.4.1 dj-database-url-0.5.0 django-4.0.1 django-heroku-0.3.1 gunicorn-20.1.0 psycopg2-2.9.3 sqlparse-0.4.2 whitenoise-5.3.0
+remote: -----&gt; $ python manage.py collectstatic --noinput
+remote:        129 static files copied to &#x27;/tmp/build_a5ccf75d/staticfiles&#x27;, 379 post-processed.
+remote:
+remote: -----&gt; Discovering process types
+remote:        Procfile declares types -&gt; web
+remote:
+remote: -----&gt; Compressing...
+remote:        Done: 68.1M
+remote: -----&gt; Launching...
+remote:        Released v5
+remote:        https://serene-caverns-82714.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/serene-caverns-82714.git
+ * [new branch]      revert-to-requirements -&gt; main
+</code></pre><p id="c985c73b-2a40-4224-88d6-7782b6eb0a5e" class="">The application is now deployed. Ensure that at least one instance of the app is running:</p><pre id="46e104b0-edf0-453a-8c9b-0db088e29477" class="code code-wrap"><code>$ heroku ps:scale web=1
+</code></pre><p id="ec4d0ff3-a245-405e-8bee-cc9b0e90c754" class="">If when running the <code>ps:scale</code> command above you see the error “<code>Couldn&#x27;t find that process type (web)</code>”, it means the first deploy of the application is taking a bit longer than normal, and the command should be repeated after waiting a few minutes.</p><p id="65fa912f-f879-45d5-8fe6-c6e868e0431d" class="">Now visit the app at the URL generated by its app name. As a handy shortcut, you can open the website as follows:</p><pre id="e4edc2dc-fd7a-498e-a67d-a19d801428fd" class="code code-wrap"><code>$ heroku open</code></pre><h1 id="ce5a301e-4210-49f2-8d6e-b33eaea053e8" class=""><strong>Define a Procfile</strong></h1><p id="67ce90e4-39a0-400c-aeb4-0c6e5ef858d5" class="">Use a <a href="https://devcenter.heroku.com/articles/procfile">Procfile</a>, a text file in the root directory of your application, to explicitly declare what command should be executed to start your app.</p><p id="49ba8cb0-9d4f-4043-9abd-607d24f39ef3" class="">The <code>Procfile</code> in the example app you deployed looks like this:</p><pre id="3119ae56-f8f4-4469-830f-ce00ddfdc5b5" class="code code-wrap"><code>web: gunicorn gettingstarted.wsgi
+</code></pre><p id="e3458f6e-2d08-49c2-a427-4d2ec41d2960" class="">This declares a single process type, <code>web</code>, and the command needed to run it. The name <code>web</code> is important here. It declares that this process type will be attached to the <a href="https://devcenter.heroku.com/articles/http-routing">HTTP routing</a> stack of Heroku, and receive web traffic when deployed.</p><p id="2a953a35-1b3a-4d8a-a60a-813389287547" class="">Procfiles can contain additional process types. For example, you might declare one for a background worker process that processes items off of a queue.</p><h3 id="115463a1-314e-4a23-9c47-d98e6aacfa5e" class="">Microsoft Windows</h3><p id="e3532001-4ebc-4079-b60f-c90d498b63b5" class="">The sample app has an additional Procfile for local development on Microsoft Windows, located in the file <code>Procfile.windows</code>. Later tutorial steps will use this instead: it starts a different web server, one that is compatible with Windows.</p><pre id="f05c8904-7a49-4de9-9a5e-f33ea9fc286e" class="code code-wrap"><code>web: python manage.py runserver 0.0.0.0:5000
+</code></pre><h1 id="4762ba9c-81d1-488c-a34a-39350f19c75f" class=""><strong>Install app dependencies locally</strong></h1><p id="7c5c76a1-4299-4c7f-99d4-2946d38013f4" class="">Heroku recognizes an app as a Python app by looking for key files. Including a <code>requirements.txt</code> in the root directory is one way for Heroku to recognize your Python app.</p><p id="9659dfdd-943e-4390-bb74-3525e00b8fef" class="">The demo app you deployed already has a <code>requirements.txt</code>, and it looks something like this:</p><pre id="eb69252c-2d04-41ee-9e9b-d1d9fbd02fa1" class="code code-wrap"><code>django
+gunicorn
+django-heroku
+</code></pre><p id="37e0767e-8b40-4368-a948-15f14e75123b" class="">The <code>requirements.txt</code> file lists the app dependencies together. When an app is deployed, Heroku reads this file and installs the appropriate Python dependencies using the <code>pip install -r</code>command.</p><p id="b44d81a0-371c-40db-b96d-bc58ccdf83fe" class="">To install the dependencies locally, we first want to create a “Virtual Environment” (also known as a “venv”) into which we can install the packages without affecting your system Python installation. To do this, run the following command:</p><pre id="dfe688d7-bd2b-4e8d-a90e-fb941f2808d5" class="code code-wrap"><code>$ python3 -m venv venv
+</code></pre><p id="b22a0d58-3436-46b5-8b4f-c64280ee1485" class="">Next, the virtual environment needs to be activated.</p><p id="6d2c2fbd-49d3-4328-abe1-c4abf26c33bc" class="">If you’re on a <strong>Microsoft Windows system</strong>, activate the venv using:</p><pre id="5d59e1b6-e947-444a-b2cc-5e04fd47a35d" class="code code-wrap"><code>.\venv\Scripts\activate
+</code></pre><p id="c808f127-e83e-4bd2-a7ff-255c68185382" class="">Or if you’re on a <strong>macOS/Linux system</strong>, activate the venv using:</p><pre id="ac0d6221-9191-4655-9ad1-e929e2475b65" class="code code-wrap"><code>source venv/bin/activate
+</code></pre><p id="898623ae-cc34-471f-a7a4-1b318c94ae44" class="">For help with setting up a virtual environment, see the <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Python documentation</a>.</p><p id="3bfb87be-60b0-4f8c-8e6c-0d77c280aa25" class="">Finally, the dependencies can now be installed into the newly created environment:</p><pre id="6bcfd54f-1af8-4ca9-a8a2-e0eaaacd2e88" class="code code-wrap"><code>$ pip install -r requirements.txt
+</code></pre><p id="bef951de-eb80-4cb6-a5cb-938a878e626a" class=""><strong>Note:</strong> Postgres must be <a href="https://devcenter.heroku.com/articles/heroku-postgresql#local-setup">properly installed</a> in order for this step to work properly. If you’re running Linux, the <code>libpq-dev</code> system package (or equivalent for your distribution) must also be installed.</p><p id="25ea71ea-1d5b-4cda-9154-03e694016f52" class="">Installing the dependencies also caused several other dependencies to be installed. You can see them by using pip’s feature <code>list</code>:</p><pre id="5ca4c709-f2b6-4379-b48e-2acff707b84d" class="code code-wrap"><code>$ pip list
+Package         Version
+--------------- -------
+asgiref         3.4.1
+dj-database-url 0.5.0
+Django          4.0.1
+django-heroku   0.3.1
+gunicorn        20.1.0
+pip             21.3.1
+psycopg2        2.9.3
+setuptools      59.5.0
+sqlparse        0.4.2
+wheel           0.37.0
+whitenoise      5.3.0
+</code></pre><p id="b7394ce3-a5e2-47b2-9064-b3e03988b734" class="">Once dependencies are installed, you will be ready to run your app locally.</p><h1 id="683b1f56-67f5-4a57-88c3-45d25c1ae7fc" class=""><strong>Run the app locally</strong></h1><p id="436e9e0a-5334-4bd6-8387-a10622b628d8" class=""><strong>Before continuing, make sure the app’s dependencies have been </strong><a href="https://devcenter.heroku.com/articles/getting-started-with-python#install-app-dependencies-locally"><strong>installed locally</strong></a><strong>.</strong></p><p id="d4f709c2-750d-402b-8b6b-c5b6f21f396e" class="">The app is almost ready to start locally. Django uses local assets, so first, you’ll need to run <code>collectstatic</code>:</p><pre id="49970e78-789c-4983-87d2-00922ae5d85d" class="code code-wrap"><code>$ python manage.py collectstatic
+</code></pre><p id="3b6492d5-789e-437c-9a79-c9331a1a4d3b" class="">Respond with “yes”.</p><p id="80c88ae6-f355-4a4d-95bf-76fa159bd499" class="">Now start your application locally using <code>heroku local</code>, which was installed as part of the Heroku CLI.</p><p id="974bdb39-61b3-4fc5-b1cc-d0d50d056900" class="">If you’re on a <strong>Microsoft Windows system</strong>, run this:</p><pre id="6880b56e-6908-4c83-87ad-960f86a4a399" class="code code-wrap"><code>$ heroku local -f Procfile.windows
+</code></pre><p id="cea3fd22-935d-46b6-819f-1fb81b137fed" class="">Or if you’re on a <strong>macOS/Linux system</strong>, use the default <code>Procfile</code> by running:</p><pre id="0bcabb63-26f1-4c41-9ad1-84ac6dfc4fbb" class="code code-wrap"><code>$ heroku local
+</code></pre><p id="8d4af5bb-e318-4294-8a08-2228eb850033" class="">Your local web server will then start up:</p><pre id="1480d142-1f6b-406f-8c6e-dcb8f4e38bce" class="code code-wrap"><code>[OKAY] Loaded ENV .env File as KEY=VALUE Format
+17:39:12 web.1   |  [2022-01-19 17:39:12 +0000] [18471] [INFO] Starting gunicorn 20.1.0
+17:39:12 web.1   |  [2022-01-19 17:39:12 +0000] [18471] [INFO] Listening at: http://0.0.0.0:5000 (18471)
+17:39:12 web.1   |  [2022-01-19 17:39:12 +0000] [18471] [INFO] Using worker: sync
+17:39:12 web.1   |  [2022-01-19 17:39:12 +0000] [18472] [INFO] Booting worker with pid: 18472
+</code></pre><p id="84d21a90-1ac4-45d4-b661-ff8a6715678c" class="">Just like Heroku, <code>heroku local</code> examines the <code>Procfile</code> to determine what to run.</p><p id="6a626b54-88c2-4c2f-aaec-c6557da93c06" class="">Open <a href="http://localhost:5000/">http://localhost:5000</a> with your web browser. You should see your app running locally.</p><p id="4765f845-d4e5-44c8-8744-775352f5bd80" class="">If you see “Not Found” errors in your console, check that the <code>collectstatic</code> step above was run before starting the web server.</p><p id="467850cf-f61b-4714-ae29-9e5bc5b53876" class="">To stop the app from running locally, go back to your terminal window and press <code>Ctrl</code>+<code>C</code> to exit.</p><h1 id="9790e571-8af2-4c3b-89a1-6f99b13b9e78" class=""><strong>Push local changes</strong></h1><p id="9db918d4-ee0b-44b2-801c-e7ef8f3e3322" class="">In this step you’ll learn how to propagate a local change to the application through to Heroku. As an example, you’ll modify the application to add an additional dependency and the code to use it.</p><p id="e2727367-8a6c-4857-8d01-bcd37f38c486" class="">Add the <code>requests</code> package to your <code>requirements.txt</code> file:</p><pre id="f32c283f-9aa2-47d4-a02f-0047fe4be0ee" class="code code-wrap"><code>django
+gunicorn
+django-heroku
+requests
+</code></pre><p id="9e8ef0fb-1335-4807-a1f3-5e80db5f3219" class="">And then use pip to install the <code>requests</code> package via the updated <code>requirements.txt</code> file:</p><pre id="bbdf9f8e-2413-4005-a64a-d58749ab9aba" class="code code-wrap"><code>$ pip install -r requirements.txt
+</code></pre><p id="e005a59f-b782-45a5-b6e9-9a37f8211b91" class="">Modify <code>hello/views.py</code> so that it imports the <code>requests</code> module at the start:</p><pre id="25417315-0586-417d-95dc-346cbdfb2997" class="code code-wrap"><code>import requests
+</code></pre><p id="1aa5cf14-ab84-49c1-b0c7-ea850b0c2fb9" class="">Now modify the <code>index</code> method to make use of the module. Try replacing the current <code>index</code> method with the following code:</p><pre id="6e5a61a1-0a65-48d4-8b5a-b314bbfb5269" class="code code-wrap"><code>def index(request):
+    r = requests.get(&#x27;https://httpbin.org/status/418&#x27;)
+    print(r.text)
+    return HttpResponse(&#x27;&lt;pre&gt;&#x27; + r.text + &#x27;&lt;/pre&gt;&#x27;)
+</code></pre><p id="f5f864b5-01b6-4009-b15c-371b8ae7640e" class="">Now test again locally.</p><p id="fa8f2c2e-2fcf-42c8-807f-2198f7c4b68f" class="">If you’re on a <strong>Microsoft Windows system</strong>, run this:</p><pre id="3326870c-b48b-4567-8423-9aa66788dec6" class="code code-wrap"><code>$ heroku local -f Procfile.windows
+</code></pre><p id="74dbae2f-340f-4c01-b6fe-b5b7cca69df5" class="">Or if you’re on a <strong>macOS/Linux system</strong>, use the default <code>Procfile</code> by running:</p><pre id="09615722-1051-4d2d-b676-01c7c844d532" class="code code-wrap"><code>$ heroku local
+</code></pre><p id="b03da56e-6e30-4bb6-bc3f-c9130a4e3c22" class="">Visit your application at <a href="http://localhost:5000/">http://localhost:5000</a>. You should now see the output of fetching http://httpbin.org/status/418, which is a lovely teapot:</p><pre id="d48b22fe-d3db-4ff0-95b4-08da99144da2" class="code code-wrap"><code>    -=[ teapot ]=-
+
+       _...._
+     .&#x27;  _ _ `.
+    | .&quot;` ^ `&quot;. _,
+    \_;`&quot;---&quot;`|//
+      |       ;/
+      \_     _/
+        `&quot;&quot;&quot;`
+</code></pre><p id="9ed0b3c3-86c9-4c91-b409-ac8996a74d7e" class="">If instead you see the error <code>ModuleNotFoundError: No module named &#x27;requests&#x27;</code>, check that the steps to install the <code>requests</code> package above were completed successfully.</p><p id="40ea377d-1988-40e7-9929-26cf07615929" class="">Now deploy. Almost every deploy to Heroku follows this same pattern. First, add the modified files to the local git repository:</p><pre id="e5115f47-d8df-41a3-b0cb-adb0b8c828a5" class="code code-wrap"><code>$ git add .
+</code></pre><p id="5833758f-3dd7-4536-82b6-f6cad531689a" class="">Now commit the changes to the repository:</p><pre id="56642af5-288f-452f-bc00-3fd2d5baadce" class="code code-wrap"><code>$ git commit -m &quot;Demo&quot;
+</code></pre><p id="b2cc47bb-6dd9-4b00-9882-49810f186003" class="">Now deploy, just as you did previously:</p><pre id="eac2e23c-d689-4ef3-94ae-1d35f27b4fbf" class="code code-wrap"><code>$ git push heroku main
+</code></pre><p id="e44b9c8b-308b-46b3-900e-56d93c845f48" class="">Finally, check that everything is working:</p><pre id="ab23e019-dd23-41fe-ba40-00f3efbb88b8" class="code code-wrap"><code>$ heroku open</code></pre><h1 id="0284592c-e95c-42a7-b0b1-3296d57bbf43" class=""><strong>Define config vars</strong></h1><p id="240666a6-a447-442e-befb-a87f37c2a5b4" class="">Heroku lets you externalise configuration - storing data such as encryption keys or external resource addresses in <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>.</p><p id="2aa8a76f-cabc-479d-a8fd-77037a09b6ac" class="">At runtime, config vars are exposed as environment variables to the application.</p><p id="a9c9d05a-4a1b-4ac0-b928-8431e7af7cf9" class="">Edit <code>hello/views.py</code>. At the beginning, add a line to import the <code>os</code> module:</p><pre id="1290a1c2-7a22-4e04-a9b3-b7e36d60a7e9" class="code code-wrap"><code>import os
+</code></pre><p id="9a2ddf13-9b8e-4a73-86bd-de68a0dc5551" class="">Now modify the <code>index</code> method so that it repeats an action depending on the value of the <code>TIMES</code>environment variable:</p><pre id="f4d911c7-e5c3-4de0-9caa-dee5c9aad7cc" class="code code-wrap"><code>def index(request):
+    times = int(os.environ.get(&#x27;TIMES&#x27;, 3))
+    return HttpResponse(&#x27;Hello! &#x27; * times)
+</code></pre><p id="81198350-fe74-4871-9185-de0efa335e1d" class=""><code>heroku local</code> will automatically set up the environment based on the contents of the <code>.env</code> file in your local directory. In the top-level directory of your project there is already a <code>.env</code> file that has the following contents:</p><pre id="80ce39e2-1b09-4bc0-890d-54f414de4a79" class="code code-wrap"><code>TIMES=2
+</code></pre><p id="e9866e0d-3e4f-4eeb-a64c-9c2b9a1c0bec" class="">If you run the app with <code>heroku local</code> and then visit <a href="http://localhost:5000/">http://localhost:5000</a>, you’ll see two “Hello!”‘s.</p><p id="5202905b-cb51-434d-bd5a-6e5535016acd" class="">To set the config var on Heroku, execute the following:</p><pre id="e544c132-5587-4fcf-b719-4dbf2456c8c0" class="code code-wrap"><code>$ heroku config:set TIMES=2
+</code></pre><p id="c8192efa-404c-42ff-bbc6-e25fa9886792" class="">View the config vars that are set using <code>heroku config</code>:</p><pre id="615d4a7a-0f89-4490-8b3b-d74a0604de65" class="code code-wrap"><code>$ heroku config
+=== serene-caverns-82714 Config Vars
+DATABASE_URL:         postgres://aadoybxpeabguh:&lt;PASSWORD&gt;@ec2-3-216-113-109.compute-1.amazonaws.com:5432/d8pcm30gp3rago
+PAPERTRAIL_API_TOKEN: &lt;SECRET_TOKEN&gt;
+TIMES:                2
+</code></pre><p id="09b69a9b-d37f-42cf-a555-fcd2e348b635" class="">Deploy your changed application to Heroku to see this in action.</p><p id="2e53a663-bf09-4d92-84bf-e4feeb47098f" class="">
+</p></div></article></body></html>

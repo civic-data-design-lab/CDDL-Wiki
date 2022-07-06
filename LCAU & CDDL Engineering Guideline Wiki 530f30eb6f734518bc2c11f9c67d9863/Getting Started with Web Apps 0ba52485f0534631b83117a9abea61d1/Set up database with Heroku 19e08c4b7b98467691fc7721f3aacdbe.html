@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Example sub-page</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Set up database with Heroku</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,4 +666,59 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="417e2e7a-249a-4ee6-a76a-1dbd667b27ab" class="page sans"><header><h1 class="page-title">Example sub-page</h1></header><div class="page-body"></div></article></body></html>
+</style></head><body><article id="19e08c4b-7b98-4676-91fc-7721f3aacdbe" class="page sans"><header><h1 class="page-title"><a href="https://devcenter.heroku.com/articles/getting-started-with-python#provision-a-database">Set up database</a> with Heroku</h1></header><div class="page-body"><h1 id="200ac07a-bd83-491e-83da-307e83f666bd" class=""><strong>Provision a database</strong></h1><p id="88165d71-1532-4d49-a1ef-a564ad4e4f51" class="">The <a href="https://elements.heroku.com/addons/categories/data-stores">add-on marketplace</a> has a large number of data stores, from Redis and MongoDB providers, to Postgres and MySQL. In this step you will learn about the free Heroku Postgres add-on that was automatically provisioned when your app was deployed.</p><p id="6fa2317b-a92f-466a-a977-dda3e199fc5a" class="">A database is an add-on, and so you can find out a little more about the database provisioned for your app using the <code>addons</code> command in the CLI:</p><pre id="5dd41a0a-935d-4043-91b2-392229c4d38d" class="code code-wrap"><code>$ heroku addons
+Add-on                                      Plan       Price  State
+──────────────────────────────────────────  ─────────  ─────  ───────
+heroku-postgresql (postgresql-cubed-97628)  hobby-dev  free   created
+ └─ as DATABASE
+...
+</code></pre><p id="31668bbc-9653-4ddd-881c-bcfeb3bbe5ba" class="">Listing the config vars for your app will display the URL that your app is using to connect to the database, <code>DATABASE_URL</code>:</p><pre id="0170368a-0c80-4e59-932a-900eb646733e" class="code code-wrap"><code>$ heroku config
+=== serene-caverns-82714 Config Vars
+DATABASE_URL:         postgres://aadoybxpeabguh:&lt;PASSWORD&gt;@ec2-3-216-113-109.compute-1.amazonaws.com:5432/d8pcm30gp3rago
+...
+</code></pre><p id="7569a35c-3d01-4c08-9117-2ebc17dbb60c" class="">Heroku also provides a <code>pg</code> command that shows a lot more:</p><pre id="6eaa8388-4fcc-41fe-a08f-a424d9a09ab9" class="code code-wrap"><code>$ heroku pg
+=== DATABASE_URL
+Plan:                  Hobby-dev
+Status:                Available
+Connections:           0/20
+PG Version:            13.5
+Created:               2022-01-19 16:49 UTC
+Data Size:             7.9 MB/1.00 GB (In compliance)
+Tables:                0
+Rows:                  0/10000 (In compliance) - refreshing
+Fork/Follow:           Unsupported
+Rollback:              Unsupported
+Continuous Protection: Off
+Add-on:                postgresql-cubed-97628
+</code></pre><p id="fa338ab8-f9d3-4eb4-852d-848a3a911b95" class="">This indicates I have a hobby database (free), running Postgres 13.5, with no data.</p><p id="7cbb3030-a27e-445c-a550-8f221a5b8574" class="">The example app you deployed already has database functionality, which you should be able to reach by visiting your app’s URL and appending <code>/db</code>. For example, if your app was deployed to <code>https://wonderful-app-287.herokuapp.com/</code> then visit <code>https://wonderful-app-287.herokuapp.com/db</code>.</p><p id="aebdb4eb-8597-448e-81fe-c5416198e059" class="">However, accessing it now will yield a <code>relation &quot;hello_greeting&quot; does not exist</code> error, because while the database is configured, the tables have not yet been created.</p><p id="7c5b2c2b-1580-4680-a64a-7daaa8d9f1b3" class="">To create the <code>hello_greeting</code> table, run the standard Django <code>manage.py migrate</code> command:</p><pre id="0dc1f92b-bc1c-45df-9d68-ced06e8a5f0b" class="code code-wrap"><code>$ heroku run python manage.py migrate
+Running python manage.py migrate on ⬢ serene-caverns-82714... up, run.4231 (Free)
+System check identified some issues:
+
+WARNINGS:
+hello.Greeting: (models.W042) Auto-created primary key used when not defining a primary key type, by default &#x27;django.db.models.AutoField&#x27;.
+    HINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. &#x27;django.db.models.BigAutoField&#x27;.
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, hello, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+...
+</code></pre><p id="d5d170e2-3eb3-41cc-b9f4-ff045900c673" class="">Now access the <code>/db</code> route again and you’ll see a simple page update every time you access it:</p><pre id="bb74456a-0846-4b01-90c3-3d941a29cb36" class="code code-wrap"><code>Page View Report
+
+Jan. 19, 2022, 6:12 p.m.
+Jan. 19, 2022, 6:17 p.m.
+</code></pre><p id="7106caea-6bc8-45c8-9ba3-ab1ceb679c4e" class="">The code to access the database is straightforward, and makes use of a simple Django model called <code>Greetings</code> that you can find in <code>hello/models.py</code>.</p><p id="b121bca0-c2c1-4315-badd-e7c8eeb41fe1" class="">Whenever you visit the <code>/db</code> route of your app, the following method in the <code>hello/views.py</code> file is invoked which creates a new Greeting and then renders all the existing Greetings:</p><pre id="d7ff6523-e7ab-41af-a918-728286d2b1a8" class="code code-wrap"><code>def db(request):
+
+    greeting = Greeting()
+    greeting.save()
+
+    greetings = Greeting.objects.all()
+
+    return render(request, &#x27;db.html&#x27;, {&#x27;greetings&#x27;: greetings})
+</code></pre><p id="bc4ea13c-3b33-4c65-844f-edf855d5afd0" class="">Assuming that you have <a href="https://devcenter.heroku.com/articles/heroku-postgresql#local-setup">Postgres installed locally</a>, use the <code>heroku pg:psql</code> command to connect to the remote database and see all the rows:</p><pre id="0325aa49-2b1b-42d5-8bc3-55a12a2f7e32" class="code code-wrap"><code>$ heroku pg:psql
+--&gt; Connecting to postgresql-cubed-97628
+psql (14.1, server 13.5 (Ubuntu 13.5-2.pgdg20.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type &quot;help&quot; for help.
+
+serene-caverns-82714::DATABASE=&gt;
+</code></pre><p id="b342751e-410f-4791-8186-7a7c178a6cbe" class="">Read more about <a href="https://devcenter.heroku.com/articles/heroku-postgresql">Heroku PostgreSQL</a>.</p><p id="61e93d45-bce9-47b6-9318-a61bb289ad65" class="">A similar technique can be used to install <a href="https://elements.heroku.com/addons/categories/data-stores">MongoDB or Redis add-ons</a>.</p></div></article></body></html>
